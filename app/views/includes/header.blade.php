@@ -246,12 +246,10 @@ if (!$no_main_header) {
                 </ul>
 
                 <form class="navbar-form navbar-left pull-right" role="search">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Search" type="text">
+                    <div class="input-group">
+                        <input class="form-control input" type="text" id="search" placeholder="Search...">
+                        <span class="input-group-addon"><i class="fa fa-fw fa fa-search"></i></span>
                     </div>
-                    <button class="btn btn-primary" type="submit">
-                        Submit
-                    </button>
                 </form>
 
             </div>

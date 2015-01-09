@@ -78,33 +78,45 @@ include("inc/scripts.php");
                 religion: {
                     required: true
                 },
-                gender: {
-                    required: true
+                gender: {required: true
                 },
-                mm: {
-                    required: true
+                mother_maiden_name: {required: true
                 },
-                dd: {
-                    required: true
+                residential_address: { required :true
                 },
-                yy: {
-                    required: true
+                mailing_address:{required: true
                 },
-                city: {
-                    required: true
+                residence_date:{required : true
                 },
-                postal: {
-                    required: true,
-                    minlength: 4
+                mm: { required: true
                 },
-                phone: {
-                    required: true,
-                    minlength: 8
+                dd: { required: true
                 },
-                hphone: {
-                    required: true,
-                    minlength: 10
-                }
+                yy: {required: true
+                },
+                city: { required: true
+                },
+                phone: {required: true,minlength: 8
+                },
+                country_of_residence :{required: true
+                },
+                nationality: {required: true
+                },
+                other_country_pass:{required : true
+                },
+                identification_type :{required : true
+                },
+                identification_number :{required: true
+                },
+                issuance_date :{required: true
+                },
+                expiry_date :{required : true
+                },
+                place_of_issuance :{required :true
+                },education_level:{required:true},company_name:{required:true},company_address:{required:true},company_phone:{required:true},annual_ave_income:{required:true},source_of_fund:{required:true},
+                bank_name:{required:true},account_name:{required:true},account_number:{required:true},bvn:{required:true},
+                kin_firstname:{required:true},kin_lastname:{required:true},kin_relationship:{required:true},kin_phone:{required:true}
+
             },
 
             messages: {
@@ -112,6 +124,10 @@ include("inc/scripts.php");
                 lastname:       "Please specify your Last name",
                 religion:       "Please specify your religion",
                 gender:         "Please specify your gender",
+                mother_maiden_name : "Please specify your mother's maiden name",
+                residential_address :"Please specify your address of residence",
+                mailing_address : "Please specify mailing address",
+                residence_date  : "Please specify date of entrance into present residence",
                 mm:             "Please specify your month of birth",
                 dd:             "Please specify your date of birth",
                 yy:             "Please specify your year of birth",
@@ -122,7 +138,16 @@ include("inc/scripts.php");
                 email: {
                     required:   "We need your email address to contact you",
                     email:      "Your email address must be in the format of name@domain.com"
-                }
+                },
+                country_of_residence                :"Please specify country of residence",
+                nationality                         :"Please specify nationality",
+                other_country_pass                  :"Please specify other country passport if any",
+                identification_type                 :"Please specify identification type",
+                place_of_issuance                   :"Please specify place of issuance",
+                education_level:"Please specify education level",company_name:"Please specify company name",company_address:"Please specify company address",company_phone:"Please specify company phone",annual_ave_income:"Please specify average annual income",source_of_fund:"Please specify source of investment fund",
+                bank_name:"Please specify bank name",account_name:"Please specify account name",account_number:"Please specify account number",bvn:"please specify bank verification number"
+                kin_firstname:"Please specify firstname",kin_lastname:"Please specify lastname",kin_relationship:"Please specify relationship",kin_phone:"Please specify phon number"
+
             },
 
             highlight: function (element) {
