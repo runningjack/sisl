@@ -1,23 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Amedora
- * Date: 12/22/14
- * Time: 2:32 PM
- */
-?>
-
 @extends("layouts.forms")
 @section("content")
 
-
-
-<!-- Widget ID (each widget will need unique ID)-->
-<div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
-
 <h2>Corporate Account Openning Form</h2>
+<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
+
 <header>
-    <h2>Corporate Account</h2>
+    <span class="widget-icon"> <i class="fa fa-check"></i> </span>
+    <h2>Corporate Account Form </h2>
 
 </header>
 
@@ -32,1324 +21,939 @@
 <!-- end widget edit box -->
 
 <!-- widget content -->
-<div class="widget-body fuelux">
+<div class="widget-body no-padding">
 
-<div class="wizard">
-    <ul class="steps">
-        <li data-target="#step1" class="active">
-            <span class="badge badge-info">1</span>Step 1<span class="chevron"></span>
+<div class="row">
+@if(Session::has('error_message'))
+<div class="alert alert-danger fade in">
+    <button class="close" data-dismiss="alert">×</button>
+    <i class="fa-fw fa fa-check"></i>{{Session::get('error_message')}}
+</div>
+@endif
+@if(Session::has('success_message'))
+<div class="alert alert-success fade in">
+    <button class="close" data-dismiss="alert">×</button>
+    <i class="fa-fw fa fa-check"></i>{{Session::get('success_message')}}
+</div>
+@endif
+
+@if ( ! empty( $errors ) )
+@foreach ( $errors->all() as $error )
+<div class="alert alert-danger fade in">
+    <button class="close" data-dismiss="alert">×</button>
+    <i class="fa-fw fa fa-times"></i>{{$error}}
+
+</div>
+
+@endforeach
+@endif
+
+{{ Form::open(array('action'=>array('AccountController@postIndividual'), 'method'=>'POST','id'=>'wizard-1','novalidate'=>'novalidate', 'class'=>'form-horizontal', 'files'=>true)) }}
+<!--<form  id="wizard-1"  novalidate="novalidate">-->
+<div id="bootstrap-wizard-1" class="col-sm-12">
+<div class="form-bootstrapWizard">
+    <ul class="bootstrapWizard form-wizard">
+        <li class="active" data-target="#step1">
+            <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title"><!--Basic information I--></span> </a>
         </li>
         <li data-target="#step2">
-            <span class="badge">2</span>Step 2<span class="chevron"></span>
+            <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title"><!--Basic information II--></span> </a>
         </li>
         <li data-target="#step3">
-            <span class="badge">3</span>Step 3<span class="chevron"></span>
+            <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title"><!--Employment Details--></span> </a>
         </li>
         <li data-target="#step4">
-            <span class="badge">4</span>Step 4<span class="chevron"></span>
+            <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title"><!--Bank Details--></span> </a>
         </li>
         <li data-target="#step5">
-            <span class="badge">5</span>Step 5<span class="chevron"></span>
+            <a href="#tab5" data-toggle="tab"> <span class="step">5</span> <span class="title"><!--Next of Kin Details--></span> </a>
         </li>
         <li data-target="#step6">
-            <span class="badge">6</span>Step 6<span class="chevron"></span>
+            <a href="#tab6" data-toggle="tab"> <span class="step">6</span> <span class="title"><!--Minor Only--></span> </a>
         </li>
         <li data-target="#step7">
-            <span class="badge">7</span>Step 7<span class="chevron"></span>
+            <a href="#tab7" data-toggle="tab"> <span class="step">7</span> <span class="title"><!--Save Form--></span> </a>
         </li>
         <li data-target="#step8">
-            <span class="badge">8</span>Step 8<span class="chevron"></span>
+            <a href="#tab8" data-toggle="tab"> <span class="step">8</span> <span class="title"><!--Save Form--></span> </a>
         </li>
-        <li data-target="#step9">
-            <span class="badge">8</span>Step 9<span class="chevron"></span>
-        </li>
+
     </ul>
-    <div class="actions">
-        <button type="button" class="btn btn-sm btn-primary btn-prev">
-            <i class="fa fa-arrow-left"></i>Prev
-        </button>
-        <button type="button" class="btn btn-sm btn-success btn-next" data-last="Finish">
-            Next<i class="fa fa-arrow-right"></i>
-        </button>
-    </div>
+    <div class="clearfix"></div>
 </div>
-<div class="step-content">
-<form class="form-horizontal smart-form" id="fuelux-wizard" method="post">
+<div class="tab-content">
+<div class="tab-pane active" id="tab1">
+    <br>
+    <h3><strong>Step 1 </strong> - Basic Information I</h3>
+<br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Company fullname" type="text" name="company_fullname" id="company_fullname" value="{{Input::old('company_fullname')}}">
 
-<div class="step-pane active" id="step1">
-    <h3><strong>Step 1 </strong> - Validation states</h3>
-
-    <!-- wizard form starts here -->
-
-    <fieldset>
-        <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col" >
-            <label>Full Company Name </label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="company_full_name" id="company_full_name" value="" placeholder="Company fullname">
-            </label>
-        </div>
-        </div>
-        <div class="row">
-            <section class="col col-6">
-                <label>Company Short Name </label>
-                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                    <input class="" type="text" name="company_short_name" id="company_short_name" value="" placeholder="Company shortname">
-                </label>
-            </section>
-            <section class="col col-6">
-                <label>Date of Incorporation </label>
-                <label class="input"><i class="icon-prepend fa fa-calendar"></i>
-                    <input class="" type="date" name="date_incorporation" id="date_incorporation" value="" placeholder="Date of Incorporation">
-                </label>
-            </section>
-        </div>
-        <div class="row">
-            <section class="col col-6">
-                <label class="label">Place of Incorporation </label>
-                <label class="input"><i class="icon-prepend fa fa-user"></i>
-                    <input class="" type="text" name="place_of_incorporation" id="place_of_incorporation" value="" placeholder="Place of incorporation">
-                </label>
-            </section>
-            <section class="col col-6">
-                <label class="label">RC Number </label>
-                <label class="input"><i class="icon-prepend fa fa-legal"></i>
-                    <input class="" type="text" name="RC_name" id="RC_name" value="" placeholder="RC Number">
-                </label>
-            </section>
-        </div>
-
-        <div class="row">
-            <section class="col col-6">
-                <label>Business Section </label>
-                <label class="input"><i class="icon-prepend fa fa-bank"></i>
-                    <input class="" type="text" name="business_sector" id="business_sector" value="" placeholder="Business Sector">
-                </label>
-            </section>
-            <section class="col col-6">
-                <label>Tax Identification Number TIN</label>
-                <label class="input"><i class="icon-prepend fa fa-calculator"></i>
-                    <input class="" type="text" name="tin_numberr" id="tin_number" value="" placeholder="TIN Number">
-                </label>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col col-12">
-                <label class="label">Company Type  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="company_type" name="company_type" value="Limited Liability Company"><i></i>Limited Liability Company
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="company_type" name="company_type" value="Partnership"><i></i>Partnership
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="company_type" name="company_type" value="Enterprice"><i></i>Enterprice
-                    </label>
                 </div>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col col-6">
-                <label>Company Address</label>
-                <label class="textarea"><i class="icon-prepend fa fa-envelope"></i>
-                    <textarea class=""  name="company_address"  id="company_address" ></textarea>
-                </label>
-            </section>
-            <section class="col col-6">
-                <label>Mailing Address </label>
-                <label class="textarea"><i class="icon-prepend fa fa-envelope"></i>
-                    <textarea class=""  name="company_mailing_address"  id="compan_mailingy_address" ></textarea>
-                </label>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col col-6">
-                <label class="label">Country of Residence</label>
-                <label class="select">
-                    <select class=""  name="company_country"  id="company_country" >
-                        <option value="">Select country</option>
-                    </select><i ></i>
-                </label>
-            </section>
-            <section class="col col-6">
-                <label class="label">Email Address </label>
-                <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                    <input type="text" class="" id="company_email" name="company_email"  >
-                </label>
-            </section>
-        </div>
-
-        <div class="row">
-            <section class="col col-6">
-                <label class="label">Company Website </label>
-                <label class="input"><i class="icon-prepend fa fa-link"></i>
-                    <input type="text" class="" id="company_website" name="company_website"  >
-                </label>
-            </section>
-            <section class="col col-6">
-                <label>Company Phone</label>
-                <label class="input"><i class="icon-prepend fa fa-phone"></i>
-                    <input type="text" class="" id="company_phone" name="company_phone"  >
-                </label>
-            </section>
-
-        </div>
-
-        <div class="row">
-            <section class="col col-6">
-                <label>Company Fax </label>
-                <label class="input"><i class="icon-prepend fa fa-fax"></i>
-                    <input type="text" class="" id="company_fax" name="company_fax"  >
-                </label>
-            </section>
-            <section class="col col-6">
-                <label>Purpose of Investment</label>
-                <label class="input">
-                    <input type="text" class="" id="purpose_of_investment" name="purpose_of_investment"  >
-                </label>
-            </section>
-
-        </div>
-
-
-        <section >
-            <label class="label">Source of Investment Fund  </label>
-            <div class="inline-group">
-                <label class="radio ">
-                    <input class="" type="radio" id="source_of_found" name="source_of_found" value="Employment"><i></i>Employment
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="source_of_found" name="source_of_found" value="Business "><i></i>Business
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="source_of_found" name="source_of_found" value=""><i></i>Otherss
-                </label>
-
-            </div>
-        </section>
-
-        <section >
-            <label class="label">Average Annual Turnover  </label>
-            <div class="inline-group">
-                <label class="radio ">
-                    <input class="" type="radio" id="annual_income" name="annual_income" value="Less Than 10 Million Naira"><i></i>Less Than 10 Million Naira
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="annual_income" name="annual_income" value="Between 10 - 15 Million Naira "><i></i>Between 10 - 15 Million Naira
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="annual_income" name="annual_income" value="50 Million Naira and Above"><i></i>50 Million Naira and Above
-                </label>
-
-            </div>
-        </section>
-
-
-</div>
-
-<div class="step-pane" id="step2">
-    <h3><strong>Step 2 </strong> - Bank Account Details</h3>
-    <div class="row">
-        <section class="col col-6">
-            <label class="label">Bank Name</label>
-            <label class="input"><i class="icon-prepend fa fa-bank"></i>
-                <input class="" type="text" name="bank_name" id="bank_name" value="" placeholder="Bank name">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Branch</label>
-            <label class="input"><i class="icon-prepend fa fa-email"></i>
-                <input class="" type="text" name="bank_branch" id="bank_branch" value="" placeholder="Bank branch">
-            </label>
-        </section>
-    </div>
-
-    <div class="row">
-        <section class="col col-6">
-            <label class="label">Account Name</label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="account_name" id="account_name" value="" placeholder="account name">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Account Number</label>
-            <label class="input"><i class="icon-prepend fa "></i>
-                <input class="" type="text" name="account_number" id="account_number" value="" placeholder="account Number">
-            </label>
-        </section>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-10 col-xs-12 col">
-            <label class="label">Bank Verification Number</label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="bank_verification_number" id="bank_verification_number" value="" placeholder="Bank Verification Number">
-            </label>
-        </div>
-    </div>
-
-</div>
-
-<div class="step-pane" id="step3">
-<h3><strong>Step 3 </strong> - Principal Contact</h3>
-
-    <div class="row">
-        <section class="col col-6">
-            <label class="label">Name</label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="contact_name" id="contact_name" value="" placeholder="contact name">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Phone Number</label>
-            <label class="input"><i class="icon-prepend fa fa-phone "></i>
-                <input class="" type="text" name="contact_phone_number" id="contact_phone_number" value="" placeholder="phone Number">
-            </label>
-        </section>
-    </div>
-    <div class="row">
-        <section class="col col-md-12 col-sm-12 col-lg-12 col-xs-12">
-            <label class="label">E-mail</label>
-            <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                <input class="" type="text" name="contact_email" id="contact_email" value="" placeholder="contact email">
-            </label>
-        </section>
-        <!--<section class="col col-6">
-            <label class="label"></label>
-            <label class="input"><i class="icon-prepend fa "></i>
-                <input class="" type="text" name="contact_phone_number" id="contact_phone_number" value="" placeholder="phone Number">
-            </label>
-        </section>-->
-    </div>
-</div>
-
-<div class="step-pane" id="step4">
-    <h3><strong>Step 4 </strong> Authorized Signature (1)</h3>
-
-        <div class="row" >
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-            <label>Name </label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="authorized1_name" id="authorized1_name" value="" placeholder="Full name">
-            </label>
             </div>
         </div>
 
-
-
-    <div class="row">
-        <section class="col col-6">
-            <label>Date of Birth *</label>
-            <div class="row">
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized1mm" name="authorized1mm" required="required">
-                            <option value="">Month</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-
-                    <label class="select">
-                        <select id="authorized1dd" name="authorized1dd" required="required">
-                            <option value="">Day</option>
-                            <?php
-                            for($x=1;$x<=31;$x++){
-                                if($x<10){$x="0".$x;}
-                                echo"<option value='{$x}'>$x</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized1yy" name="authorized1yy" required="required">
-                            <option value="">Year</option>
-                            <?php
-                            for($x=1;$x<=100;$x++){
-                                $ddate = date("Y")-$x;
-                                echo"<option value='$ddate'>".$ddate."</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-            </div>
-
-        </section>
-        <section class="col col-6">
-            <label>Place/Country of birth </label>
-            <label class="input">
-                <input class="" type="text" name="authorized1_pob" id="authorized1_pob" value="" placeholder="Place/Country of birth">
-            </label>
-
-        </section>
     </div>
 
     <div class="row">
-        <section class="col col-6">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
 
-                <label>Gender *</label>
-                <label class="select">
-                    <select name="gender" id="gender">
-                        <option value="">--Select  gender--</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                    <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Company short name"  type="text" name="company_shortname" value="{{Input::old('company_shortname')}}" id="company_shortname">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Date of Incorporation"  type="text" name="date_of_incorporation" value="{{Input::old('date_of_incorporation')}}" id="date_of_birth">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-building fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="state_of_birth" id="state_of_birth">
+                        <option value="">Place of Incorporation</option>
+                        @if(count($states) > 0)
+                        @foreach($states as $country)
+                        <option value="{{$country->zone_id}},{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-keyboard-o fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="RC Number"  type="text" name="rc_number" value="{{Input::old('rc_number')}}" id="rc_number">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="business_sector" id="business_sector">
+                        <option value="">Select business sector</option>
+                        <option value="Christianity">Christianity</option>
+                        <option value="Islam">Islam</option>
                         <option value="Others">Others</option>
-                    </select><i></i>
-                </label>
-            </section>
-        <section class="col col-6">
-            <label>Nationality </label>
-            <label class="select">
-                <select name="authorized1_nationality" id="authorized1_nationality">
-                    <option value="">--Select  country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
+                    </select>
 
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-keyboard-o fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Tax Identification Number (TIN)"  type="text" name="tin_number" value="{{Input::old('tin_number')}}" id="tin_number">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <fieldset><legend><strong>Company Type</strong></legend>
+            <div class="col-sm-3 no-padding">
+                <div class="form-group ">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="company_type" name="company_type" value="Limited Liability Company" @if(Input::old("company_type") == "Limited Liability Company") {{"checked"}} @endif>Limited Liability
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-3 no-padding">
+                <div class="form-group">
+
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="company_type" name="company_type" value="Partnership" @if(Input::old("company_type") == "Partnership") {{"checked"}} @endif STYLE="margin-left: 0 !important">Partnership
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="company_type" name="company_type" value="Enterprise" @if(Input::old("company_type") == "Enterprise") {{"checked"}} @endif STYLE="margin-left: 0 !important">Enterprise
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-3 no-pa">
+                <div class="form-group">
+
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="company_type" name="company_type" value="Others" @if(Input::old("company_type") == "Others") {{"checked"}} @endif >Others
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input">
+
+                    <textarea class="form-control input-lg" placeholder="Company Address" type="text" name="company_address" id="company_address">{{Input::old('company_address')}}</textarea>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input">
+
+                    <textarea class="form-control input-lg" placeholder="Company Mailing Address" type="text" name="mailing_address" id="mailing_address">{{Input::old('mailing_address')}}</textarea>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <div class="row">
-        <section class="col col-6">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                    <select name="country_of_residence" class="form-control input-lg">
+                        <option value="" selected="selected">Select company country of residence</option>
+                        @if(count($countries) > 0)
+                        @foreach($countries as $country)
+                        <option value="{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Corporate Web Site" type="text" name="company_web_address" id="company_web_address" value="{{Input::old('company_web_address')}}">
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <label>Residence Address</label>
-                <label class="select">
-                    <select name="authorized1_residence_address" id="authorized1_residence_address">
-                        <option value="">--Select your gender--</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Others">Others</option>
-                    </select><i></i>
-                </label>
-            </section>
 
-        <section class="col col-6">
-            <label>Country of Residence </label>
-            <label class="select">
-                <select name="authorized1_residence_country" id="authorized1_residence_country">
-                    <option value="">--Select your country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
+
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Corporate E-mail" type="text" name="company_email" id="company_email" value="{{Input::old('company_email')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Telephone no(s)" type="text" name="company_phone" id="company_phone" value="{{Input::old('company_phone')}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-fax fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Company Fax" type="text" name="company_fax" id="company_fax" value="{{Input::old('company_fax')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Purpose of Investment" type="text" name="investment_purpose" id="investment_purpose" value="{{Input::old('investment_purpose')}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <fieldset><legend><strong>Annual Average Turnover <i>NGN</i></strong></legend>
+            <div class="col-sm-4 no-padding">
+                <div class="form-group ">
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="annual_avg_income" name="annual_avg_income" value="Less Than 10 Million Naira" @if(Input::old("annual_ave_income") == "Less Than 10 Million Naira") {{"checked"}} @endif style="margin-left: 0 !important;">Less Than 10 Million Naira
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="annual_avg_income" name="annual_avg_income" value="Between 10 - 15 Million Naira" @if(Input::old("annual_ave_income") == "Between 10 - 15 Million Naira") {{"checked"}} @endif STYLE="margin-left: 0 !important">Between 10 - 15 Million Naira
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="annual_avg_income" name="annual_avg_income" value="50 Million Naira and Above" @if(Input::old("annual_ave_income") == "50 Million Naira and Above") {{"checked"}} @endif STYLE="margin-left: 0 !important">50 Million Naira and Above
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+
+    <div class="row">
+        <fieldset><legend><strong>Source of Investment Fund</strong></legend>
+            <div class="col-sm-4 no-padding">
+                <div class="form-group ">
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Employment" @if(Input::old("source_of_fund") == "Employment") {{"checked"}} @endif style="margin-left: 0 !important;">Employment
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="source_of_fund" name="source_of_fund" value="Business" @if(Input::old("source_of_fund") == "Business") {{"checked"}} @endif STYLE="margin-left: 0 !important">Business
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 no-padding">
+                <div class="form-group">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Others" @if(Input::old("source_of_fund") == "Others") {{"checked"}} @endif STYLE="margin-left: 0 !important">Others
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+
+
+
+</div>
+<div class="tab-pane" id="tab2">
+    <br>
+    <h3><strong>Step 2</strong> - BANK DETAILS</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Bank name" type="text" name="bank_name" id="bank_name" value="{{Input::old('bank_name')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Bank branch" type="text" name="bank_branch" id="bank_branch" value="{{Input::old('bank_branch')}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Account name" type="text" name="account_name" id="account_name" value="{{Input::old('account_name')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-keyboard-o fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Account number" type="text" name="account_number" id="account_number" value="{{Input::old('account_number')}}">
+
+                </div>
+            </div>
+        </div>
 
     </div>
 
     <div class="row">
-        <section class="col col-6">
-            <label class="label">E-mail</label>
-            <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                <input class="" type="text" name="authorized1_email" id="authorized1_email" value="" placeholder="contact email">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Phone</label>
-            <label class="input"><i class="icon-prepend fa fa-phone "></i>
-                <input class="" type="text" name="authorized1_phone" id="authorized1_phone" value="" placeholder="phone Number">
-            </label>
-        </section>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa  fa-keyboard-o fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Bank Verification Number" type="text" name="bvn" id="bvn" value="{{Input::old('bvn')}}">
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <fieldset>
-        <legend>IDentification Details</legend>
-        <div class="row">
-            <section class="col col-12">
-                <label class="label">ID Type  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_id_type" name="authorized1_id_type" value="International Passport"><i></i>International Passport
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_id_type" name="authorized1_id_type" value="Driver's Licence"><i></i>Driver's Licence
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_id_type" name="authorized1_id_type" value="National ID Card"><i></i>National ID Card
-                    </label>
-                </div>
-            </section>
-        </div>
+</div>
 
 
-        <div class="row">
-            <section class="col col-3">
-                <label class="label">ID Number</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized1_id_no" name="authorized1_id_no"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Issue Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized1_issue_date" name="authorized1_issue_date"  >
-
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Expiry Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized1_expiry_date" name="authorized1_expiry_date"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Place of Issuance</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized1_place_of_issuance" name="authorized1_place_of_issuance"  >
-                </label>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col-6 col">
-                <label class="label">Designation</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized1_designation" name="authorized1_designation"  >
-                </label>
-            </section>
-            <section class="col-6 col">
-                <label class="label">Class of Signture  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_signature_class" name="authorized1_signature_class" value="A"><i></i>A
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_signature_class" name="authorized1_signature_class" value="B "><i></i>B
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized1_signature_class" name="authorized1_signature_class" value="C"><i></i>C
-                    </label>
+<div class="tab-pane" id="tab3">
+    <br>
+    <h3><strong>Step 3</strong> - PRINCIPAL CONTACT</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Principal Contact Person fullname" type="text" name="principal_contact_name" id="principal_contact_name" value="{{Input::old('principal_contact_name')}}">
 
                 </div>
-            </section>
-
+            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-                <label class="label">Upload Specimen </label>
-                <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="authorized1_specimen" id="authorized1_specimen" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                    <input class="" type="text" name="authorized1_specimen" readonly="" value="">
-                </label>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Principal Contact Email"  type="text" name="principal_contact_email" value="{{Input::old('principal_contact_email')}}" id="principal_contact_email">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Principal Contact Phone"  type="text" name="principal_contact_phone" value="{{Input::old('principal_contact_phone')}}" id="residence_date">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="tab-pane" id="tab4">
+<br>
+<h3><strong>Step 4</strong> - AUTHORIZED SIGNATORY I</h3>
+<br>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-graduation-cap fa-lg fa-fw"></i></span>
+                <select name="education_level" class="form-control input-lg">
+                    <option value="">Select education level</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <fieldset><legend><strong>Employment Status</strong></legend>
+        <div class="col-sm-3 no-padding">
+            <div class="form-group ">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="employment_status" name="employment_status" value="Full Time" @if(Input::old("employment_status") == "Full Time") {{"checked"}} @endif>Full Time
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-3 no-padding">
+            <div class="form-group">
+
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio " type="radio" id="employment_status" name="employment_status" value="Part Time" @if(Input::old("employment_status") == "Part Time") {{"checked"}} @endif STYLE="margin-left: 0 !important">Part Time
+                    </label>
+                </div>
+
             </div>
         </div>
 
 
+        <div class="col-sm-3 no-padding">
+            <div class="form-group">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="employment_status" name="employment_status" value="Self Employed" @if(Input::old("employment_status") == "Self Employed") {{"checked"}} @endif STYLE="margin-left: 0 !important">Self Employed
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-3 no-padding">
+            <div class="form-group">
+
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio " type="radio" id="employment_status" name="employment_status" value="Retired" @if(Input::old("employment_status") == "Retired") {{"checked"}} @endif >Retired
+                    </label>
+                </div>
+
+            </div>
+        </div>
     </fieldset>
+</div>
+<hr>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                <select name="employment_segment" class="form-control input-lg">
+                    <option value="" selected="selected">Employment Segment</option>
+                    <option value="United States">United States</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                <select name="occupation" class="form-control input-lg">
+                    <option value="" selected="selected">Occupation</option>
+                    <option value="United States">United States</option>
+                </select>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <strong>Date of Employment</strong>
+    </div>
+    <div class="col-sm-6 ">
+
+        <div class="form-group">
+            <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="Date of employment"  type="text" name="employment_date" value="{{Input::old('employment_date')}}" id="employment_date">
+
+            </div>
+        </div>
+    </div>
+
 
 
 
 
 </div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="Company name" type="text" name="company_name" id="company_name" value="{{Input::old('company_name')}}">
 
-<div class="step-pane" id="step5">
-    <h3><strong>Step 5 </strong> - Authorized Signature (2)</h3>
-
-    <div class="row" >
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-            <label>Name </label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="authorized2_name" id="authorized2_name" value="" placeholder="Full name">
-            </label>
+            </div>
         </div>
     </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="texarea">
+
+                <textarea class="form-control input-lg" placeholder="Company Address" type="text" name="company_address" id="company_address" >{{Input::old('company_address')}}</textarea>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="Company phone" type="text" name="company_phone" id="company_phone" value="{{Input::old('company_phone')}}">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fax fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="Company fax" type="text" name="company_fax" id="company_fax" value="{{Input::old('company_fax')}}">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="E-mail" type="text" name="company_email" id="company_email" value="{{Input::old('company_email')}}">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
+                <input class="form-control input-lg" placeholder="Website" type="text" name="company_website" id="company_website" value="{{Input::old('company_website')}}">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <fieldset><legend><strong>Annual Average Income</strong></legend>
+        <div class="col-sm-4 no-padding">
+            <div class="form-group ">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="annual_ave_income" name="annual_ave_income" value="Less Than 10 Million Naira" @if(Input::old("annual_ave_income") == "Less Than 10 Million Naira") {{"checked"}} @endif style="margin-left: 0 !important;">Less Than 10 Million Naira
+                    </label>
+                </div>
 
 
+            </div>
+        </div>
+        <div class="col-sm-4 no-padding">
+            <div class="form-group">
 
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio " type="radio" id="annual_ave_income" name="annual_ave_income" value="Between 10 - 15 Million Naira" @if(Input::old("annual_ave_income") == "Between 10 - 15 Million Naira") {{"checked"}} @endif STYLE="margin-left: 0 !important">Between 10 - 15 Million Naira
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-4 no-padding">
+            <div class="form-group">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="annual_ave_income" name="annual_ave_income" value="50 Million Naira and Above" @if(Input::old("annual_ave_income") == "50 Million Naira and Above") {{"checked"}} @endif STYLE="margin-left: 0 !important">50 Million Naira and Above
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+
+    </fieldset>
+</div>
+
+<div class="row">
+    <fieldset><legend><strong>Source of Investment Fund</strong></legend>
+        <div class="col-sm-4 no-padding">
+            <div class="form-group ">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Employment" @if(Input::old("source_of_fund") == "Employment") {{"checked"}} @endif style="margin-left: 0 !important;">Employment
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-4 no-padding">
+            <div class="form-group">
+
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio " type="radio" id="source_of_fund" name="source_of_fund" value="Business" @if(Input::old("source_of_fund") == "Business") {{"checked"}} @endif STYLE="margin-left: 0 !important">Business
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-4 no-padding">
+            <div class="form-group">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Others" @if(Input::old("source_of_fund") == "Others") {{"checked"}} @endif STYLE="margin-left: 0 !important">Others
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+
+    </fieldset>
+</div>
+</div>
+
+<div class="tab-pane" id="tab5">
+    <br>
+    <h3><strong>Step 5</strong> - Questionaire</h3>
+    <br>
     <div class="row">
-        <section class="col col-6">
-            <label>Date of Birth *</label>
+        <fieldset><legend><strong>Please state if any of your Directors, Signatories or Major Shareholders have held any Political Position.</strong></legend>
+            <div class="col-sm-6 ">
+                <div class="form-group ">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="political_position" name="political_position" value="Yes" style="margin-left: 0 !important;" @if(Input::old("political_position") == "Yes") {{"checked"}} @endif >Yes
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-6 ">
+                <div class="form-group">
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" @if(Input::old("political_position") == "No") {{"checked"}} @endif id="political_position" name="political_position" value="No" STYLE="margin-left: 0 !important">No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </fieldset>
+    </div>
+    <div class="row" id="polpos" >
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Specify Political Office" type="text" name="political_office" id="political_office" value="{{Input::old('political_office')}}">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 ">
             <div class="row">
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized2mm" name="authorized2mm" required="required">
-                            <option value="">Month</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-
-                    <label class="select">
-                        <select id="authorized2dd" name="authorized2dd" required="required">
-                            <option value="">Day</option>
-                            <?php
-                            for($x=1;$x<=31;$x++){
-                                if($x<10){$x="0".$x;}
-                                echo"<option value='{$x}'>$x</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized2yy" name="authorized2yy" required="required">
-                            <option value="">Year</option>
-                            <?php
-                            for($x=1;$x<=100;$x++){
-                                $ddate = date("Y")-$x;
-                                echo"<option value='$ddate'>".$ddate."</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-            </div>
-
-        </section>
-        <section class="col col-6">
-            <label>Place/Country of birth </label>
-            <label class="input">
-                <input class="" type="text" name="authorized2_pob" id="authorized2_pob" value="" placeholder="Place/Country of birth">
-            </label>
-
-        </section>
-    </div>
-
-    <div class="row">
-        <section class="col col-6">
-
-            <label>Gender *</label>
-            <label class="select">
-                <select name="gender" id="gender">
-                    <option value="">--Select  gender--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-        <section class="col col-6">
-            <label>Nationality </label>
-            <label class="select">
-                <select name="authorized2_nationality" id="authorized2_nationality">
-                    <option value="">--Select  country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-    </div>
-
-
-    <div class="row">
-        <section class="col col-6">
-
-            <label>Residence Address</label>
-            <label class="select">
-                <select name="authorized2_residence_address" id="authorized2_residence_address">
-                    <option value="">--Select your gender--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-        <section class="col col-6">
-            <label>Country of Residence </label>
-            <label class="select">
-                <select name="authorized2_residence_country" id="authorized2_residence_country">
-                    <option value="">--Select your country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-    </div>
-
-    <div class="row">
-        <section class="col col-6">
-            <label class="label">E-mail</label>
-            <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                <input class="" type="text" name="authorized2_email" id="authorized2_email" value="" placeholder="contact email">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Phone</label>
-            <label class="input"><i class="icon-prepend fa fa-phone "></i>
-                <input class="" type="text" name="authorized2_phone" id="authorized2_phone" value="" placeholder="phone Number">
-            </label>
-        </section>
-    </div>
-
-    <fieldset>
-        <legend>IDentification Details</legend>
-        <div class="row">
-            <section class="col col-12">
-                <label class="label">ID Type  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_id_type" name="authorized2_id_type" value="International Passport"><i></i>International Passport
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_id_type" name="authorized2_id_type" value="Driver's Licence"><i></i>Driver's Licence
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_id_type" name="authorized2_id_type" value="National ID Card"><i></i>National ID Card
-                    </label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg"  placeholder="date from" type="text" name="political_office_date_from" id="political_office_date_from" value="{{Input::old('political_office_date_from')}}">
+                        </div>
+                    </div>
                 </div>
-            </section>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg"  placeholder="Date to" type="text" name="political_office_date_to" id="political_office_date_to" value="{{Input::old('political_office_date_from')}}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+    </div>
+    <div class="row">
 
-        <div class="row">
-            <section class="col col-3">
-                <label class="label">ID Number</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized2_id_no" name="authorized2_id_no"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Issue Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized2_issue_date" name="authorized2_issue_date"  >
+    </div>
+</div>
+<div class="tab-pane" id="tab6">
+    <br>
+    <h3><strong>Step 6</strong> - Attestation</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="input">
 
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Expiry Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized2_expiry_date" name="authorized2_expiry_date"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Place of Issuance</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized2_place_of_issuance" name="authorized2_place_of_issuance"  >
-                </label>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col-6 col">
-                <label class="label">Designation</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized2_designation" name="authorized2_designation"  >
-                </label>
-            </section>
-            <section class="col-6 col">
-                <label class="label">Class of Signture  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_signature_class" name="authorized2_signature_class" value="A"><i></i>A
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_signature_class" name="authorized2_signature_class" value="B "><i></i>B
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized2_signature_class" name="authorized2_signature_class" value="C"><i></i>C
+                    <label class="checkbox">
+                        <input class="checkbox " type="checkbox" id="attestation" name="attestation" value="1" @if(Input::old("attestation") == 1) {{"checked"}} @endif  > I attest that all informtion provided herein
+                        is accurate and would notify you to update my records where any changes occurs.
                     </label>
 
                 </div>
-            </section>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-                <label class="label">Upload Specimen </label>
-                <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="authorized2_specimen" id="authorized2_specimen" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                    <input class="" type="text" name="authorized2_specimen" readonly="" value="">
-                </label>
             </div>
         </div>
-
-    </fieldset>
-
+    </div>
+    <br>
 </div>
-
-<div class="step-pane" id="step6">
-    <h3><strong>Step 6 </strong> - Authorized Signature (3)</h3>
-    <div class="row" >
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-            <label>Name </label>
-            <label class="input"><i class="icon-prepend fa fa-user"></i>
-                <input class="" type="text" name="authorized3_name" id="authorized3_name" value="" placeholder="Full name">
-            </label>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <section class="col col-6">
-            <label>Date of Birth *</label>
-            <div class="row">
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized3mm" name="authorized3mm" required="required">
-                            <option value="">Month</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-
-                    <label class="select">
-                        <select id="authorized3dd" name="authorized3dd" required="required">
-                            <option value="">Day</option>
-                            <?php
-                            for($x=1;$x<=31;$x++){
-                                if($x<10){$x="0".$x;}
-                                echo"<option value='{$x}'>$x</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-                <section class="col col-4">
-                    <label class="select">
-                        <select id="authorized3yy" name="authorized3yy" required="required">
-                            <option value="">Year</option>
-                            <?php
-                            for($x=1;$x<=100;$x++){
-                                $ddate = date("Y")-$x;
-                                echo"<option value='$ddate'>".$ddate."</option>";
-                            }
-                            ?>
-                        </select><i></i>
-                    </label>
-                </section>
-            </div>
-
-        </section>
-        <section class="col col-6">
-            <label>Place/Country of birth </label>
-            <label class="input">
-                <input class="" type="text" name="authorized3_pob" id="authorized3_pob" value="" placeholder="Place/Country of birth">
-            </label>
-
-        </section>
-    </div>
-
-    <div class="row">
-        <section class="col col-6">
-
-            <label>Gender *</label>
-            <label class="select">
-                <select name="gender" id="gender">
-                    <option value="">--Select  gender--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-        <section class="col col-6">
-            <label>Nationality </label>
-            <label class="select">
-                <select name="authorized3_nationality" id="authorized3_nationality">
-                    <option value="">--Select  country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-    </div>
-
-
-    <div class="row">
-        <section class="col col-6">
-
-            <label>Residence Address</label>
-            <label class="select">
-                <select name="authorized3_residence_address" id="authorized3_residence_address">
-                    <option value="">--Select your gender--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-        <section class="col col-6">
-            <label>Country of Residence </label>
-            <label class="select">
-                <select name="authorized3_residence_country" id="authorized3_residence_country">
-                    <option value="">--Select your country--</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Others">Others</option>
-                </select><i></i>
-            </label>
-        </section>
-
-    </div>
-
-    <div class="row">
-        <section class="col col-6">
-            <label class="label">E-mail</label>
-            <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-                <input class="" type="text" name="authorized3_email" id="authorized3_email" value="" placeholder="contact email">
-            </label>
-        </section>
-        <section class="col col-6">
-            <label class="label">Phone</label>
-            <label class="input"><i class="icon-prepend fa fa-phone "></i>
-                <input class="" type="text" name="authorized3_phone" id="authorized3_phone" value="" placeholder="phone Number">
-            </label>
-        </section>
-    </div>
-
-    <fieldset>
-        <legend>IDentification Details</legend>
-        <div class="row">
-            <section class="col col-12">
-                <label class="label">ID Type  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_id_type" name="authorized3_id_type" value="International Passport"><i></i>International Passport
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_id_type" name="authorized3_id_type" value="Driver's Licence"><i></i>Driver's Licence
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_id_type" name="authorized3_id_type" value="National ID Card"><i></i>National ID Card
-                    </label>
-                </div>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col col-3">
-                <label class="label">ID Number</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized3_id_no" name="authorized3_id_no"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Issue Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized3_issue_date" name="authorized3_issue_date"  >
-
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Expiry Date</label>
-                <label class="input">
-                    <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized3_expiry_date" name="authorized3_expiry_date"  >
-                </label>
-            </section>
-            <section class="col col-3">
-                <label class="label">Place of Issuance</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized3_place_of_issuance" name="authorized3_place_of_issuance"  >
-                </label>
-            </section>
-        </div>
-
-
-        <div class="row">
-            <section class="col-6 col">
-                <label class="label">Designation</label>
-                <label class="input">
-                    <input type="text" class="" id="authorized3_designation" name="authorized3_designation"  >
-                </label>
-            </section>
-            <section class="col-6 col">
-                <label class="label">Class of Signture  </label>
-                <div class="inline-group">
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_signature_class" name="authorized3_signature_class" value="A"><i></i>A
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_signature_class" name="authorized3_signature_class" value="B "><i></i>B
-                    </label>
-                    <label class="radio ">
-                        <input class="" type="radio" id="authorized3_signature_class" name="authorized3_signature_class" value="C"><i></i>C
-                    </label>
-
-                </div>
-            </section>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-                <label class="label">Upload Specimen </label>
-                <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="authorized3_specimen" id="authorized3_specimen" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                    <input class="" type="text" name="authorized3_specimen" readonly="" value="">
-                </label>
-            </div>
-        </div>
-
-
-    </fieldset>
-
-</div>
-
-<div class="step-pane" id="step7">
-<h3><strong>Step 7 </strong> - Authorized Signature (4)</h3>
-<div class="row" >
-    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-        <label>Name </label>
-        <label class="input"><i class="icon-prepend fa fa-user"></i>
-            <input class="" type="text" name="authorized4_name" id="authorized4_name" value="" placeholder="Full name">
-        </label>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <section class="col col-6">
-        <label>Date of Birth *</label>
-        <div class="row">
-            <section class="col col-4">
-                <label class="select">
-                    <select id="authorized4mm" name="authorized4mm" required="required">
-                        <option value="">Month</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select><i></i>
-                </label>
-            </section>
-            <section class="col col-4">
-
-                <label class="select">
-                    <select id="authorized4dd" name="authorized4dd" required="required">
-                        <option value="">Day</option>
-                        <?php
-                        for($x=1;$x<=31;$x++){
-                            if($x<10){$x="0".$x;}
-                            echo"<option value='{$x}'>$x</option>";
-                        }
-                        ?>
-                    </select><i></i>
-                </label>
-            </section>
-            <section class="col col-4">
-                <label class="select">
-                    <select id="authorized4yy" name="authorized4yy" required="required">
-                        <option value="">Year</option>
-                        <?php
-                        for($x=1;$x<=100;$x++){
-                            $ddate = date("Y")-$x;
-                            echo"<option value='$ddate'>".$ddate."</option>";
-                        }
-                        ?>
-                    </select><i></i>
-                </label>
-            </section>
-        </div>
-
-    </section>
-    <section class="col col-6">
-        <label>Place/Country of birth </label>
-        <label class="input">
-            <input class="" type="text" name="authorized4_pob" id="authorized4_pob" value="" placeholder="Place/Country of birth">
-        </label>
-
-    </section>
-</div>
-
-<div class="row">
-    <section class="col col-6">
-
-        <label>Gender *</label>
-        <label class="select">
-            <select name="gender" id="gender">
-                <option value="">--Select  gender--</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
-            </select><i></i>
-        </label>
-    </section>
-    <section class="col col-6">
-        <label>Nationality </label>
-        <label class="select">
-            <select name="authorized4_nationality" id="authorized4_nationality">
-                <option value="">--Select  country--</option>
-                <option value="Christianity">Christianity</option>
-                <option value="Islam">Islam</option>
-                <option value="Others">Others</option>
-            </select><i></i>
-        </label>
-    </section>
-
-</div>
-
-
-<div class="row">
-    <section class="col col-6">
-
-        <label>Residence Address</label>
-        <label class="select">
-            <select name="authorized4_residence_address" id="authorized4_residence_address">
-                <option value="">--Select your gender--</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
-            </select><i></i>
-        </label>
-    </section>
-
-    <section class="col col-6">
-        <label>Country of Residence </label>
-        <label class="select">
-            <select name="authorized4_residence_country" id="authorized4_residence_country">
-                <option value="">--Select your country--</option>
-                <option value="Christianity">Christianity</option>
-                <option value="Islam">Islam</option>
-                <option value="Others">Others</option>
-            </select><i></i>
-        </label>
-    </section>
-
-</div>
-
-<div class="row">
-    <section class="col col-6">
-        <label class="label">E-mail</label>
-        <label class="input"><i class="icon-prepend fa fa-envelope"></i>
-            <input class="" type="text" name="authorized4_email" id="authorized4_email" value="" placeholder="contact email">
-        </label>
-    </section>
-    <section class="col col-6">
-        <label class="label">Phone</label>
-        <label class="input"><i class="icon-prepend fa fa-phone "></i>
-            <input class="" type="text" name="authorized4_phone" id="authorized4_phone" value="" placeholder="phone Number">
-        </label>
-    </section>
-</div>
-
-<fieldset>
-    <legend>IDentification Details</legend>
-    <div class="row">
-        <section class="col col-12">
-            <label class="label">ID Type  </label>
-            <div class="inline-group">
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_id_type" name="authorized4_id_type" value="International Passport"><i></i>International Passport
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_id_type" name="authorized4_id_type" value="Driver's Licence"><i></i>Driver's Licence
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_id_type" name="authorized4_id_type" value="National ID Card"><i></i>National ID Card
-                </label>
-            </div>
-        </section>
-    </div>
-
-
-    <div class="row">
-        <section class="col col-3">
-            <label class="label">ID Number</label>
-            <label class="input">
-                <input type="text" class="" id="authorized4_id_no" name="authorized4_id_no"  >
-            </label>
-        </section>
-        <section class="col col-3">
-            <label class="label">Issue Date</label>
-            <label class="input">
-                <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized4_issue_date" name="authorized4_issue_date"  >
-
-            </label>
-        </section>
-        <section class="col col-3">
-            <label class="label">Expiry Date</label>
-            <label class="input">
-                <input type="text" class="form-control" data-mask="99/99/9999" data-mask-placeholder="-" id="authorized4_expiry_date" name="authorized4_expiry_date"  >
-            </label>
-        </section>
-        <section class="col col-3">
-            <label class="label">Place of Issuance</label>
-            <label class="input">
-                <input type="text" class="" id="authorized4_place_of_issuance" name="authorized4_place_of_issuance"  >
-            </label>
-        </section>
-    </div>
-
-
-    <div class="row">
-        <section class="col-6 col">
-            <label class="label">Designation</label>
-            <label class="input">
-                <input type="text" class="" id="authorized4_designation" name="authorized4_designation"  >
-            </label>
-        </section>
-        <section class="col-6 col">
-            <label class="label">Class of Signture  </label>
-            <div class="inline-group">
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_signature_class" name="authorized4_signature_class" value="A"><i></i>A
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_signature_class" name="authorized4_signature_class" value="B "><i></i>B
-                </label>
-                <label class="radio ">
-                    <input class="" type="radio" id="authorized4_signature_class" name="authorized4_signature_class" value="C"><i></i>C
-                </label>
-
-            </div>
-        </section>
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 col">
-            <label class="label">Upload Specimen </label>
+<div class="tab-pane" id="tab7">
+    <br>
+    <h3><strong>Step 7</strong> - Uploads</h3>
+    <br>
+    <div class="row smart-form">
+        <fieldset><legend> Upload signature</legend>
+            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a valid utility bill not more than 3 month old</label>
             <label class="input input-file">
                                 <span class="button">
-                                    <input class="" type="file" name="authorized4_specimen" id="authorized4_specimen" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                <input class="" type="text" name="authorized4_specimen" readonly="" value="">
+
+                                    <input class="" type="file" name="file-signature" id="file-signature" onchange="document.getElementById('signature').value = this.value" >Browse</span>
+                <input class="" placeholder="Upload your signature" type="text" id="signature" name="signature" readonly="" value="">
             </label>
-        </div>
+        </fieldset>
+    </div>
+    <div class="row smart-form">
+        <fieldset><legend> Upload recent passport photograph</legend>
+            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a recent passport photograph</label>
+            <label class="input input-file">
+                                <span class="button">
+                                    <input class="" type="file" name="file-photo" id="file-photo" onchange="document.getElementById('photo').value = this.value" >Browse</span>
+                <input class="" type="text" id="photo" name="photo" readonly="" placeholder="Upload a valid passport photograph" value="">
+            </label>
+        </fieldset>
+    </div>
+    <div class="row smart-form">
+        <fieldset><legend> Upload recent utility bill</legend>
+            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a valid utility bill not more than 3 month old</label>
+            <label class="input input-file">
+                                <span class="button">
+                                    <input class="" type="file" name="file-utility" id="file-utility" onchange="document.getElementById('utility').value = this.value" >Browse</span>
+                <input class="" type="text" id="utility" name="utility" readonly="" value="">
+            </label>
+        </fieldset>
     </div>
 
 
-</fieldset>
+    <div class="row smart-form">
+        <fieldset><legend> Upload valid means of identification</legend>
+            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a valid means of identification</label>
+            <label class="input input-file">
+                                <span class="button">
+                                    <input class="" type="file" name="file-identity" id="file-identity" onchange="document.getElementById('identity').value = this.value" >Browse</span>
+                <input class="" type="text" id="identity" name="identity" readonly="" value="">
+            </label>
+        </fieldset>
+    </div>
 
+    <br>
 </div>
 
-<div class="step-pane" id="step8">
-    <h3><strong>Step 8  </strong> - Atestation &amp; Document Uploads</h3>
-    <fieldset>
-        <section>
-            <label class="label">We attest that all information provided herein is accurate and would notify you to update our records where any change occurs</label>
-            <label class="checkbox "><input class="" type="checkbox" name="agreement" id="agreement" value=""><i></i> We agree to the Terms and Conditions. 	</label>
-        </section>
-
-        <section>
-            <label class="label">Mandate</label>
-            <label class="input">
-                <input type="text" class="" id="mandate" name="mandate"  >
-            </label>
-        </section>
-
-        <section>
-            <label class="label">Upload Director Signature 1</label>
-            <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="signature1" id="signature1" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                <input class="" type="text" name="file_signature1" readonly="" value="">
-            </label>
-        </section>
-
-        <section>
-            <label class="label">Upload Director Signature 1</label>
-            <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="signature2" id="signature2" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                <input class="" type="text" name="file_signature2" readonly="" value="">
-            </label>
-        </section>
-
-
-
-
-        <section>
-            <label class="label">Upload Mean of Identification </label>
-            <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="identity" id="identity" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                <input class="" type="text" name="file-identity" readonly="" value="">
-            </label>
-        </section>
-
-
-
-
-        <section>
-            <label class="label">Upload Utility </label>
-            <label class="input input-file">
-                                <span class="button">
-                                    <input class="" type="file" name="utility" id="utility" onchange="this.parentNode.nextSibling.value = this.value" value="">Browse</span>
-                <input class="" type="text" name="file-utility" readonly="" value="">
-            </label>
-        </section>
-    </fieldset>
-</div>
-
-<div class="step-pane" id="step9">
-    <h3><strong>Step   </strong> - Finalize</h3>
+<div class="tab-pane" id="tab8">
     <br>
+    <h3><strong>Step 8</strong> - Save Form</h3>
     <br>
-    <h1 class="text-center text-success"><i class="fa fa-check"></i> Congratulations!
-        <br>
-        <small>Click finish to end wizard</small></h1>
-    <br>
-    <br>
+    <h1 class="text-center text-success"><strong><i class="fa fa-check fa-lg"></i> Complete</strong></h1>
+    <h4 class="text-center"><button type="submit" >Click here to finish</button> </h4>
     <br>
     <br>
 </div>
 
+<div class="form-actions">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="pager wizard no-margin">
+                <!--<li class="previous first disabled">
+                <a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
+                </li>-->
+                <li class="previous disabled">
+                    <a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
+                </li>
+                <!--<li class="next last">
+                <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+                </li>-->
+                <li class="next">
+                    <a href="javascript:void(0);" class="btn btn-lg txt-color-darken"> Next </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
 </form>
 </div>
 
@@ -1360,95 +964,6 @@
 <!-- end widget div -->
 
 </div>
-<!-- end widget -->
 
-
-@stop
-
-
-<script type="text/javascript">
-
-
-    $(document).ready(function() {
-
-        var $validator = $("#wizard-1").validate({
-
-            rules: {
-                email: {
-                    required: true,
-                    email: "Your email address must be in the format of name@domain.com"
-                },
-                fname: {
-                    required: true
-                },
-                lname: {
-                    required: true
-                },
-                country: {
-                    required: true
-                },
-                city: {
-                    required: true
-                },
-                postal: {
-                    required: true,
-                    minlength: 4
-                },
-                wphone: {
-                    required: true,
-                    minlength: 10
-                },
-                hphone: {
-                    required: true,
-                    minlength: 10
-                }
-            },
-
-            messages: {
-                fname: "Please specify your First name",
-                lname: "Please specify your Last name",
-                email: {
-                    required: "We need your email address to contact you",
-                    email: "Your email address must be in the format of name@domain.com"
-                }
-            },
-
-            highlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-            },
-            errorElement: 'span',
-            errorClass: 'help-block',
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length) {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-        });
-
-
-
-        // fuelux wizard
-        var wizard = $('.wizard').wizard();
-
-        wizard.on('finished', function (e, data) {
-            //$("#fuelux-wizard").submit();
-            //console.log("submitted!");
-            $.smallBox({
-                title: "Congratulations! Your form was submitted",
-                content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",
-                color: "#5F895F",
-                iconSmall: "fa fa-check bounce animated",
-                timeout: 4000
-            });
-
-        });
-
-
-    })
-
-</script>
+<!-- end widget -->      
+@stop                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

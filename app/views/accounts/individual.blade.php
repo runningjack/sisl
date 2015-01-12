@@ -1,7 +1,8 @@
 @extends("layouts.forms")
 @section("content")
 
-<!-- Widget ID (each widget will need unique ID)-->
+
+<h2>Individual Account Openning Form</h2>
 <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
 
 <header>
@@ -18,9 +19,7 @@
     <!-- This area used as dropdown edit box -->
 
 </div>
-<!-- end widget edit box -->
 
-<!-- widget content -->
 <div class="widget-body no-padding">
 
 <div class="row">
@@ -90,7 +89,7 @@
 <div class="tab-pane active" id="tab1">
     <br>
     <h3><strong>Step 1 </strong> - Basic Information I</h3>
-
+<br>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
@@ -243,6 +242,7 @@
 <div class="tab-pane" id="tab2">
 <br>
 <h3><strong>Step 2</strong> - Basic Information II</h3>
+    <br>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
@@ -432,6 +432,7 @@
 <div class="tab-pane" id="tab3">
     <br>
     <h3><strong>Step 3</strong> - EMPLOYMENT DETAILS</h3>
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">

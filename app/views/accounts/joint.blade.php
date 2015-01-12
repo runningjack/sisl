@@ -1,26 +1,19 @@
 @extends("layouts.forms")
 @section("content")
 
-<!-- Widget ID (each widget will need unique ID)-->
+<h2>Joint Account Openning Form</h2>
 <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
 
 <header>
     <span class="widget-icon"> <i class="fa fa-check"></i> </span>
-    <h2>Individual Account Form </h2>
+    <h2>Joint Account Form </h2>
 
 </header>
 
 <!-- widget div-->
 <div>
 
-<!-- widget edit box -->
-<div class="jarviswidget-editbox">
-    <!-- This area used as dropdown edit box -->
 
-</div>
-<!-- end widget edit box -->
-
-<!-- widget content -->
 <div class="widget-body no-padding">
 
 <div class="row">
@@ -83,6 +76,12 @@
         <li data-target="#step10">
             <a href="#tab10" data-toggle="tab"> <span class="step">10</span> <span class="title"><!--Save Form--></span> </a>
         </li>
+        <li data-target="#step11">
+            <a href="#tab11" data-toggle="tab"> <span class="step">11</span> <span class="title"><!--Save Form--></span> </a>
+        </li>
+        <li data-target="#step12">
+            <a href="#tab12" data-toggle="tab"> <span class="step">12</span> <span class="title"><!--Save Form--></span> </a>
+        </li>
     </ul>
     <div class="clearfix"></div>
 </div>
@@ -90,7 +89,7 @@
 <div class="tab-pane active" id="tab1">
     <br>
     <h3><strong>Step 1 </strong> - Basic Information I</h3>
-
+<br>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
@@ -243,6 +242,7 @@
 <div class="tab-pane" id="tab2">
     <br>
     <h3><strong>Step 2</strong> - Basic Information II</h3>
+    <br>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
@@ -429,16 +429,363 @@
 
 
 </div>
-<div class="tab-pane" id="tab3">
+
+<div class="tab-pane active" id="tab3">
+    <br>
+    <h3><strong>Step 3 </strong> - Joint Holder's Basic Information I</h3>
 <br>
-<h3><strong>Step 3</strong> - EMPLOYMENT DETAILS</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="First Name" type="text" name="joint_firstname" id="joint_firstname" value="{{Input::old('joint_firstname')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Last Name" type="text" name="joint_lastname" id="joint_lastname" value="{{Input::old('joint_lastname')}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Othernames" type="text" name="joint_othernames" id="joint_othernames" value="{{Input::old('joint_othernames')}}">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Date of birth"  type="text" name="joint_date_of_birth" value="{{Input::old('joint_date_of_birth')}}" id="joint_date_of_birth">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                    <select name="joint_place_of_birth" id="joint_place_of_birth" class="form-control input-lg">
+                        <option value="" selected="selected">Select Place of birth</option>
+                        @if(count($countries) > 0)
+                        @foreach($countries as $country)
+                        <option value="{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-building fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="joint_state_of_birth" id="joint_state_of_birth">
+                        <option value="">Select state of birth</option>
+                        @if(count($states) > 0)
+                        @foreach($states as $country)
+                        <option value="{{$country->zone_id}},{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="joint_lga_of_birth" id="joint_lga_of_birth">
+                        <option value="">Select LGA</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="joint_religion" id="joint_religion">
+                        <option value="">Select religion</option>
+                        <option value="Christianity">Christianity</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Others">Others</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-child fa-lg fa-fw"></i></span>
+                    <select class="form-control input-lg" name="joint_gender" id="joint_gender">
+                        <option value="">Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="E-mail" type="text" name="joint_email" id="joint_email" value="{{Input::old('joint_email')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Telephone" type="text" name="joint_phone" id="joint_phone" value="{{Input::old('joint_phone')}}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="tab-pane" id="tab4">
+    <br>
+    <h3><strong>Step 4</strong> - Joint Holder's Basic Information II</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Mother's Maiden Name" type="text" name="joint_mother_maiden_name" id="joint_mother_maiden_name" value="{{Input::old('joint_mother_maiden_name')}}">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="texarea">
+
+                    <textarea class="form-control input-lg" placeholder="Residential Address" type="text" name="joint_residential_address" id="joint_residential_address" >{{Input::old('joint_residential_address')}}</textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input">
+
+                    <textarea class="form-control input-lg" placeholder="Mailing Address" type="text" name="joint_mailing_address" id="joint_mailing_address">{{Input::old('joint_mailing_address')}}</textarea>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                    <input class="form-control input-lg" placeholder="Date of Entrance into present residence"  type="text" name="joint_residence_date" value="{{Input::old('joint_residence_date')}}" id="joint_residence_date">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                    <select name="joint_country_of_residence" class="form-control input-lg">
+                        <option value="" >Select country of residence</option>
+                        @if(count($countries) > 0)
+                        @foreach($countries as $country)
+                        <option value="{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                    <select name="joint_nationality" class="form-control input-lg">
+                        @if(count($countries) > 0)
+                        @foreach($countries as $country)
+                        <option value="{{$country->name}}">{{$country->name}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio" type="radio" id="joint_other_country_pass" name="joint_other_country_pass" value="Yes" @if(Input::old("other_country_pass") == "Yes") {{"checked"}} @endif >Yes
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+
+
+                <div class="input">
+                    <label class="radio ">
+                        <input class="form-control radio " type="radio" id="other_country_pass" name="other_country_pass" value="No" @if(Input::old("other_country_pass") == "No") {{"checked"}} @endif >No
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend>IDENTIFICATION</legend>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio" type="radio" id="joint_identification_type" name="joint_identification_type" value="Driver's Licence" @if(Input::old("identification_type") == "Driver's Licence") {{"checked"}} @endif > Drivers Licence
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="joint_identification_type" name="joint_identification_type" value="National ID Card" @if(Input::old("identification_type") == "National ID Card") {{"checked"}} @endif>National ID Card
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6 no-padding">
+                <div class="form-group">
+
+
+                    <div class="input">
+                        <label class="radio ">
+                            <input class="form-control radio " type="radio" id="joint_identification_type" name="joint_identification_type" value="International Passport" @if(Input::old("identification_type") == "International Passport") {{"checked"}} @endif>International Passport
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>ID Number</label>
+                        <input class="form-control input-lg " placeholder="ID Number" type="text" id="joint_identification_number" name="joint_identification_number" value="{{Input::old('joint_identification_number')}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Issuance Date</label>
+                        <input class="form-control input-lg " placeholder="Issuance Date" type="text" id="joint_issuance_date" name="joint_issuance_date" value="{{Input::old('joint_issuance_date')}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Expiry Date</label>
+                        <input class="form-control input-lg" placeholder="Expiry Date" type="text" name="joint_expiry_date" id="joint_expiry_date" value="{{Input::old('joint_expiry_date')}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Place of Issuance</label>
+                        <input class="form-control input-lg " placeholder="Place of Issuance" type="text" id="joint_place_of_issuance" name="joint_place_of_issuance" value="{{Input::old('joint_place_of_issuance')}}" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+
+</div>
+
+
+<div class="tab-pane" id="tab5">
+<br>
+<h3><strong>Step 5</strong> - EMPLOYMENT DETAILS</h3>
+<br>
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
             <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-graduation-cap fa-lg fa-fw"></i></span>
-                <select name="education_level" class="form-control input-lg">
+                <select name="joint_education_level" class="form-control input-lg">
                     <option value="">Select education level</option>
                 </select>
             </div>
@@ -702,9 +1049,9 @@
     </fieldset>
 </div>
 </div>
-<div class="tab-pane" id="tab4">
+<div class="tab-pane" id="tab6">
     <br>
-    <h3><strong>Step 4</strong> - BANK DETAILS</h3>
+    <h3><strong>Step 6</strong> - BANK DETAILS</h3>
     <br>
     <div class="row">
         <div class="col-sm-6">
@@ -766,9 +1113,9 @@
 
 </div>
 
-<div class="tab-pane" id="tab5">
+<div class="tab-pane" id="tab7">
     <br>
-    <h3><strong>Step 5</strong> - NEXT OF KIN DETAILS</h3>
+    <h3><strong>Step 7</strong> - NEXT OF KIN DETAILS</h3>
     <br>
     <div class="row">
         <div class="col-sm-6">
@@ -924,9 +1271,9 @@
 
 </div>
 
-<div class="tab-pane" id="tab6">
+<div class="tab-pane" id="tab8">
     <br>
-    <h3><strong>Step 6</strong> - Minor Only</h3>
+    <h3><strong>Step 8</strong> - Minor Only</h3>
     <br>
 
     <div class="row">
@@ -975,9 +1322,9 @@
 
 </div>
 
-<div class="tab-pane" id="tab7">
+<div class="tab-pane" id="tab9">
     <br>
-    <h3><strong>Step 7</strong> - Questionaire</h3>
+    <h3><strong>Step 9</strong> - Questionaire</h3>
     <br>
     <div class="row">
         <fieldset><legend><strong>Have you occupied any political position?</strong></legend>
@@ -1141,9 +1488,9 @@
 
     </div>
 </div>
-<div class="tab-pane" id="tab8">
+<div class="tab-pane" id="tab10">
     <br>
-    <h3><strong>Step 8</strong> - Attestation</h3>
+    <h3><strong>Step 10</strong> - Attestation</h3>
     <br>
     <div class="row">
         <div class="col-sm-12">
@@ -1161,9 +1508,9 @@
     </div>
     <br>
 </div>
-<div class="tab-pane" id="tab9">
+<div class="tab-pane" id="tab11">
     <br>
-    <h3><strong>Step 9</strong> - Uploads</h3>
+    <h3><strong>Step 11</strong> - Uploads</h3>
     <br>
     <div class="row smart-form">
         <fieldset><legend> Upload signature</legend>
@@ -1212,9 +1559,9 @@
     <br>
 </div>
 
-<div class="tab-pane" id="tab10">
+<div class="tab-pane" id="tab12">
     <br>
-    <h3><strong>Step 10</strong> - Save Form</h3>
+    <h3><strong>Step 12</strong> - Save Form</h3>
     <br>
     <h1 class="text-center text-success"><strong><i class="fa fa-check fa-lg"></i> Complete</strong></h1>
     <h4 class="text-center"><button type="submit" >Click here to finish</button> </h4>

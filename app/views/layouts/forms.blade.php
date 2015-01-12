@@ -185,7 +185,7 @@ Session::flush();
             calendars: 1,
             starts: 1
         });*/
-        $( "#residence_date" ).datepicker({
+        $( "#residence_date,#joint_residence_date,#expiry_date,#joint_expiry_date,#date_of_birth,#joint_date_of_birth,#employment_date,#joint_employment_date,#employment_date,#joint_employment_date" ).datepicker({
             showWeek: true,
             firstDay: 1,
             dateFormat: 'yy-mm-dd',
@@ -211,7 +211,8 @@ Session::flush();
         });
 
 
-        $( "#date_of_birth" ).datepicker({
+
+        $( "#issuance_date,#joint_issuance_date" ).datepicker({
             showWeek: true,
             firstDay: 1,
             dateFormat: 'yy-mm-dd',
@@ -236,79 +237,6 @@ Session::flush();
             }
         });
 
-        $( "#employment_date" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
-
-        $( "#issuance_date" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
-        $( "#expiry_date" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
         $( "#kin_date_of_birth" ).datepicker({
             showWeek: true,
             firstDay: 1,
@@ -333,7 +261,9 @@ Session::flush();
                 }, 1);
             }
         });
-        $( "#minor_date_of_birth" ).datepicker({
+
+
+        $( "#asso_political_office_date_to,#asso_political_office_date_from,#political_office_date_to,#political_office_date_from,#minor_date_of_birth" ).datepicker({
             showWeek: true,
             firstDay: 1,
             dateFormat: 'yy-mm-dd',
@@ -358,104 +288,6 @@ Session::flush();
             }
         });
 
-
-        $( "#political_office_date_from" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
-        $( "#political_office_date_to" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
-
-        $( "#asso_political_office_date_to,#asso_political_office_date_from" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
-        $( "#asso_political_office_date_from" ).datepicker({
-            showWeek: true,
-            firstDay: 1,
-            dateFormat: 'yy-mm-dd',
-            changeYear: true,
-            beforeShow: function(input) {
-                setTimeout(function() {
-                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
-                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
-                    prevYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), -1, 'Y');
-
-                    });
-                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
-                    nextYrBtn.unbind("click").bind("click", function() {
-                        $.datepicker._adjustDate($(input), +1, 'Y');
-
-                    });
-                    prevYrBtn.appendTo(widgetHeader);
-                    nextYrBtn.appendTo(widgetHeader);
-
-                }, 1);
-            }
-        });
         //$('*[name=residence_date]').appendDtpicker();
         //$('*[name=tdate]').appendDtpicker();
 

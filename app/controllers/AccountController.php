@@ -81,7 +81,9 @@ class AccountController extends BaseController{
             ->with("slideshows",$sliders)
             ->with("pageblocks",DB::table("posts")->where("type","page block")->get())
             ->with("marketnews",DB::table("posts")->where("parent_id",92)->get())
-            ->with("toploosers",$toploosers);
+            ->with("toploosers",$toploosers)
+            ->with("countries",DB::table("country")->get())
+            ->with("states",DB::table("zone")->where("country_id","156")->get());
     }
 
 
@@ -116,7 +118,9 @@ class AccountController extends BaseController{
             ->with("slideshows",$sliders)
             ->with("pageblocks",DB::table("posts")->where("type","page block")->get())
             ->with("marketnews",DB::table("posts")->where("parent_id",92)->get())
-            ->with("toploosers",$toploosers);
+            ->with("toploosers",$toploosers)
+            ->with("countries",DB::table("country")->get())
+            ->with("states",DB::table("zone")->where("country_id","156")->get());
     }
 
 
