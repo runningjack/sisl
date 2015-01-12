@@ -154,9 +154,19 @@
                     <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
                     <select class="form-control input-lg" name="business_sector" id="business_sector">
                         <option value="">Select business sector</option>
-                        <option value="Christianity">Christianity</option>
-                        <option value="Islam">Islam</option>
-                        <option value="Others">Others</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Construction/ Real Estate">Construction/ Real Estate</option>
+                        <option value="Consumer Goods">Consumer Goods</option>
+                        <option value="Financial Services">Financial Services</option>
+                        <option value="​Healthcare">​Healthcaree</option>
+                        <option value="​Industrial Goods">​Industrial Goods</option>
+                        <option value="Natural Resources">Natural Resources</option>
+                        <option value="​Oil & Gas">​Oil & Gas</option>
+                        <option value="​Services">Services</option>
+                        <option value="​Information & Communications Technology">​Information & Communications Technology</option>
+                        <option value="​Utilities">​Utilities</option>
+                        <option value="​Conglomerates">​Conglomerates</option>
+
                     </select>
 
                 </div>
@@ -174,7 +184,7 @@
 
     <div class="row">
         <fieldset><legend><strong>Company Type</strong></legend>
-            <div class="col-sm-3 no-padding">
+            <div class="col-sm-3">
                 <div class="form-group ">
 
                     <div class="input">
@@ -186,7 +196,7 @@
 
                 </div>
             </div>
-            <div class="col-sm-3 no-padding">
+            <div class="col-sm-3">
                 <div class="form-group">
 
 
@@ -327,7 +337,7 @@
 
     <div class="row">
         <fieldset><legend><strong>Annual Average Turnover <i>NGN</i></strong></legend>
-            <div class="col-sm-4 no-padding">
+            <div class="col-sm-4">
                 <div class="form-group ">
                     <div class="input">
                         <label class="radio ">
@@ -336,7 +346,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 no-padding">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <div class="input">
                         <label class="radio ">
@@ -364,7 +374,7 @@
 
     <div class="row">
         <fieldset><legend><strong>Source of Investment Fund</strong></legend>
-            <div class="col-sm-4 no-padding">
+            <div class="col-sm-4">
                 <div class="form-group ">
                     <div class="input">
                         <label class="radio ">
@@ -373,7 +383,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 no-padding">
+            <div class="col-sm-4">
                 <div class="form-group">
 
 
@@ -387,7 +397,7 @@
             </div>
 
 
-            <div class="col-sm-4 no-padding">
+            <div class="col-sm-4">
                 <div class="form-group">
 
                     <div class="input">
@@ -513,275 +523,288 @@
 <br>
 <h3><strong>Step 4</strong> - AUTHORIZED SIGNATORY I</h3>
 <br>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="form-group">
-            <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-graduation-cap fa-lg fa-fw"></i></span>
-                <select name="education_level" class="form-control input-lg">
-                    <option value="">Select education level</option>
-                </select>
+    <div class="row">
+        <hr>
+            <div class="text-right">
+                <a href="#" id="dialog_link" class="btn btn-labeled btn-primary">
+                    <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span> Add New
+                </a>
             </div>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <fieldset><legend><strong>Employment Status</strong></legend>
-        <div class="col-sm-3 no-padding">
-            <div class="form-group ">
+        <div id="dialog_simple" title="Dialog Simple Title">
+            <div id="msg"></div>
+            <p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="First Name" type="text" name="signatory_firstname" id="signatory_firstname" value="{{Input::old('signatory_firstname')}}">
 
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="employment_status" name="employment_status" value="Full Time" @if(Input::old("employment_status") == "Full Time") {{"checked"}} @endif>Full Time
-                    </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="Last Name" type="text" name="signatory_lastname" id="signatory_lastname" value="{{Input::old('signatory_lastname')}}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="Signatory's Othernames" type="text" name="signatory_othernames" id="signatory_othernames" value="{{Input::old('signatory_othernames')}}">
+
+                        </div>
+                    </div>
+
                 </div>
 
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-child fa-lg fa-fw"></i></span>
+                            <select class="form-control input-lg" name="gender" id="gender">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
 
-            </div>
-        </div>
-        <div class="col-sm-3 no-padding">
-            <div class="form-group">
-
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio " type="radio" id="employment_status" name="employment_status" value="Part Time" @if(Input::old("employment_status") == "Part Time") {{"checked"}} @endif STYLE="margin-left: 0 !important">Part Time
-                    </label>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-sm-3 no-padding">
-            <div class="form-group">
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="employment_status" name="employment_status" value="Self Employed" @if(Input::old("employment_status") == "Self Employed") {{"checked"}} @endif STYLE="margin-left: 0 !important">Self Employed
-                    </label>
-                </div>
-
-
-            </div>
-        </div>
-        <div class="col-sm-3 no-padding">
-            <div class="form-group">
-
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio " type="radio" id="employment_status" name="employment_status" value="Retired" @if(Input::old("employment_status") == "Retired") {{"checked"}} @endif >Retired
-                    </label>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-        </div>
-    </fieldset>
-</div>
-<hr>
 
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
-                <select name="employment_segment" class="form-control input-lg">
-                    <option value="" selected="selected">Employment Segment</option>
-                    <option value="United States">United States</option>
-                </select>
+                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="Signatory's Date of birth"  type="text" name="signatory_date_of_birth" value="{{Input::old('signatory_date_of_birth')}}" id="signatory_date_of_birth">
 
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
-                <select name="occupation" class="form-control input-lg">
-                    <option value="" selected="selected">Occupation</option>
-                    <option value="United States">United States</option>
-                </select>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-6">
-        <strong>Date of Employment</strong>
-    </div>
-    <div class="col-sm-6 ">
-
-        <div class="form-group">
-            <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="Date of employment"  type="text" name="employment_date" value="{{Input::old('employment_date')}}" id="employment_date">
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-bank fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="Company name" type="text" name="company_name" id="company_name" value="{{Input::old('company_name')}}">
-
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="texarea">
-
-                <textarea class="form-control input-lg" placeholder="Company Address" type="text" name="company_address" id="company_address" >{{Input::old('company_address')}}</textarea>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="Company phone" type="text" name="company_phone" id="company_phone" value="{{Input::old('company_phone')}}">
-
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-fax fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="Company fax" type="text" name="company_fax" id="company_fax" value="{{Input::old('company_fax')}}">
-
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="E-mail" type="text" name="company_email" id="company_email" value="{{Input::old('company_email')}}">
-
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-link fa-lg fa-fw"></i></span>
-                <input class="form-control input-lg" placeholder="Website" type="text" name="company_website" id="company_website" value="{{Input::old('company_website')}}">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <fieldset><legend><strong>Annual Average Income</strong></legend>
-        <div class="col-sm-4 no-padding">
-            <div class="form-group ">
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="annual_ave_income" name="annual_ave_income" value="Less Than 10 Million Naira" @if(Input::old("annual_ave_income") == "Less Than 10 Million Naira") {{"checked"}} @endif style="margin-left: 0 !important;">Less Than 10 Million Naira
-                    </label>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                            <select name="signatory_place_of_birth" id="signatory_place_of_birth" class="form-control input-lg">
+                                <option value="" selected="selected">Select Place of birth</option>
+                                @if(count($countries) > 0)
+                                @foreach($countries as $country)
+                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                @endforeach
+                                @endif
+                            </select>
 
-
-            </div>
-        </div>
-        <div class="col-sm-4 no-padding">
-            <div class="form-group">
-
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio " type="radio" id="annual_ave_income" name="annual_ave_income" value="Between 10 - 15 Million Naira" @if(Input::old("annual_ave_income") == "Between 10 - 15 Million Naira") {{"checked"}} @endif STYLE="margin-left: 0 !important">Between 10 - 15 Million Naira
-                    </label>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-        </div>
 
 
-        <div class="col-sm-4 no-padding">
-            <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input">
 
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="annual_ave_income" name="annual_ave_income" value="50 Million Naira and Above" @if(Input::old("annual_ave_income") == "50 Million Naira and Above") {{"checked"}} @endif STYLE="margin-left: 0 !important">50 Million Naira and Above
-                    </label>
+                            <textarea class="form-control input-lg" placeholder="Residence Address" type="text" name="signatory_residence_address" id="signatory_residence_address">{{Input::old('residence_address')}}</textarea>
+
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input">
+                            <select name="signatory_country_of_residence" class="form-control input-lg">
+                                <option value="" selected="selected">Select company country of residence</option>
+                                @if(count($countries) > 0)
+                                @foreach($countries as $country)
+                                <option value="{{$country->name}}">{{$country->name}}</option>
+                                @endforeach
+                                @endif
+                            </select>
 
-
-            </div>
-        </div>
-
-    </fieldset>
-</div>
-
-<div class="row">
-    <fieldset><legend><strong>Source of Investment Fund</strong></legend>
-        <div class="col-sm-4 no-padding">
-            <div class="form-group ">
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Employment" @if(Input::old("source_of_fund") == "Employment") {{"checked"}} @endif style="margin-left: 0 !important;">Employment
-                    </label>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
-        </div>
-        <div class="col-sm-4 no-padding">
-            <div class="form-group">
 
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="E-mail" type="text" name="email" id="email" value="{{Input::old('email')}}">
 
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio " type="radio" id="source_of_fund" name="source_of_fund" value="Business" @if(Input::old("source_of_fund") == "Business") {{"checked"}} @endif STYLE="margin-left: 0 !important">Business
-                    </label>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg" placeholder="Telephone" type="text" name="phone" id="phone" value="{{Input::old('phone')}}">
 
-            </div>
-        </div>
-
-
-        <div class="col-sm-4 no-padding">
-            <div class="form-group">
-
-                <div class="input">
-                    <label class="radio ">
-                        <input class="form-control radio" type="radio" id="source_of_fund" name="source_of_fund" value="Others" @if(Input::old("source_of_fund") == "Others") {{"checked"}} @endif STYLE="margin-left: 0 !important">Others
-                    </label>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
+
+            <div class="row">
+                <fieldset>
+                    <legend>IDENTIFICATION</legend>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+
+                            <div class="input">
+                                <label class="radio ">
+                                    <input class="form-control radio" type="radio" id="identification_type" name="identification_type" value="Driver's Licence" @if(Input::old("identification_type") == "Driver's Licence") {{"checked"}} @endif > Drivers Licence
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+
+
+                            <div class="input">
+                                <label class="radio ">
+                                    <input class="form-control radio " type="radio" id="identification_type" name="identification_type" value="National ID Card" @if(Input::old("identification_type") == "National ID Card") {{"checked"}} @endif>National ID Card
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
 
             </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+
+
+                        <div class="input">
+                            <label class="radio ">
+                                <input class="form-control radio " type="radio" id="identification_type" name="identification_type" value="International Passport" @if(Input::old("identification_type") == "International Passport") {{"checked"}} @endif>International Passport
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>ID Number</label>
+                            <input class="form-control input-lg " placeholder="ID Number" type="text" id="identification_number" name="identification_number" value="{{Input::old('identification_number')}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>Issuance Date</label>
+                            <input class="form-control input-lg " placeholder="Issuance Date" type="text" id="issuance_date" name="issuance_date" value="{{Input::old('issuance_date')}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>Expiry Date</label>
+                            <input class="form-control input-lg" placeholder="Expiry Date" type="text" name="expiry_date" id="expiry_date" value="{{Input::old('expiry_date')}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>Place of Issuance</label>
+                            <input class="form-control input-lg " placeholder="Place of Issuance" type="text" id="place_of_issuance" name="place_of_issuance" value="{{Input::old('place_of_issuance')}}" >
+                        </div>
+                    </div>
+                </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa- fa-lg fa-fw"></i></span>
+                            <input class="form-control input-lg " placeholder="Signatory's Designation" type="text" id="signatory_designation" name="signatory_designation" value="{{Input::old('signatory_designation')}}" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <fieldset><legend><strong>Class</strong></legend>
+                    <div class="col-sm-4">
+                        <div class="form-group ">
+                            <div class="input">
+                                <label class="radio ">
+                                    <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="A" @if(Input::old("signatory_authorization_class") == "A") {{"checked"}} @endif style="margin-left: 0 !important;">A
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="input">
+                                <label class="radio ">
+                                    <input class="form-control radio " type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="B" @if(Input::old("signatory_authorization_class") == "B") {{"checked"}} @endif STYLE="margin-left: 0 !important">B
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+
+                            <div class="input">
+                                <label class="radio ">
+                                    <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="C" @if(Input::old("signatory_authorization_class") == "C") {{"checked"}} @endif STYLE="margin-left: 0 !important">C
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            </p>
         </div>
 
-    </fieldset>
-</div>
+
+
+        <hr>
+
+    </div>
+
+
+
 </div>
 
 <div class="tab-pane" id="tab5">

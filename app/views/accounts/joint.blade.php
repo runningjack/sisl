@@ -787,6 +787,17 @@
                 <span class="input-group-addon"><i class="fa fa-graduation-cap fa-lg fa-fw"></i></span>
                 <select name="joint_education_level" class="form-control input-lg">
                     <option value="">Select education level</option>
+                    <option value="MPhil / PhD">MPhil / PhD</option>
+                    <option value="MBA / MSc">MBA / MSc</option>
+                    <option value="MBBS">MBBS</option>
+                    <option value="Degree">Degree</option>
+                    <option value="HND">HND</option>
+                    <option value="OND">OND</option>
+                    <option value="N.C.E">N.C.E</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="High School (S.S.C.E)">High School (S.S.C.E)</option>
+                    <option value="Vocational">Vocational</option>
+                    <option value="Others">Others</option>
                 </select>
             </div>
         </div>
@@ -857,7 +868,31 @@
                 <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
                 <select name="employment_segment" class="form-control input-lg">
                     <option value="" selected="selected">Employment Segment</option>
-                    <option value="United States">United States</option>
+                    <option value="Advertising / Marketing / Comms">Advertising / Marketing / Comms</option>
+                    <option value="Agriculture/Poultry/Fishing">Agriculture/Poultry/Fishing</option>
+                    <option value="Banking / Financial Services">Banking / Financial Services</option>
+                    <option value="Construction / Real Estate" >Construction / Real Estate</option>
+                    <option value="Consulting">Consulting</option>
+                    <option value="Creatives/Art/Design">Creatives/Art/Design</option>
+                    <option value="Ecommerce/Internet" >Ecommerce/Internet</option>
+                    <option value="Education" >Education</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Food Services">Food Services</option>
+                    <option value="Government / Defence">Government / Defence</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Hospitality/Leisure">Hospitality/Leisure</option>
+                    <option value="ICT / Telecommunications">ICT / Telecommunications</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Logistics / Transportation">Logistics / Transportation</option>
+                    <option value="Manufacturing / Production">Manufacturing / Production</option>
+                    <option value="Media">Media</option>
+                    <option value="NGO">NGO</option>
+                    <option value="Oil &amp; Gas / Mining">Oil &amp; Gas / Mining</option>
+                    <option value="Power/Energy">Power/Energy</option>
+                    <option value="Retail / Wholesales">Retail / Wholesales</option>
+                    <option value="Trade / Services">Trade / Services</option>
+                    <option value="Travels/Tours">Travels/Tours</option>
                 </select>
 
             </div>
@@ -869,9 +904,36 @@
                 <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
                 <select name="occupation" class="form-control input-lg">
                     <option value="" selected="selected">Occupation</option>
-                    <option value="United States">United States</option>
+                    <option value="Accounting / Audit / Tax">Accounting / Audit / Tax</option>
+                    <option value="Administration &amp; Office Support">Administration &amp; Office Support</option>
+                    <option value="Banking / Finance / Insurance">Banking / Finance / Insurance</option>
+                    <option value="Building Design/Architecture">Building Design/Architecture</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Consulting/Business Strategy &amp; Planning">Consulting/Business Strategy &amp; Planning</option>
+                    <option value="Creatives">Creatives</option>
+                    <option value="Customer Service">Customer Service</option>
+                    <option value="Education/Teaching/Training">Education/Teaching/Training</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Executive / Top Management">Executive / Top Management</option>
+                    <option value="Healthcare / Pharmaceutical ">Healthcare / Pharmaceutical </option>
+                    <option value="Hospitality / Leisure / Travels">Hospitality / Leisure / Travels</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Logistics / Transportation">Logistics / Transportation</option>
+                    <option value="Manufacturing / Production">Manufacturing / Production</option>
+                    <option value="Marketing / Advertising / Communications">Marketing / Advertising / Communications</option>
+                    <option value="NGO/Community Services & Dev">NGO/Community Services &amp; Dev</option>
+                    <option value="Oil & Gas / Mining / Energy">Oil&amp;Gas / Mining / Energy</option>
+                    <option value="Project / Programme Management" >Project / Programme Management </option>
+                    <option value="QA&amp;QC / HSE" >QA&amp;QC / HSE</option>
+                    <option value="Real Estate / Property">Real Estate / Property</option>
+                    <option value="Research">Research</option>
+                    <option value="Sales/Business Development">Sales/Business Development</option>
+                    <option value="Supply Chain / Procurement">Supply Chain / Procurement</option>
+                    <option value="Telecommunications">Telecommunications</option>
+                    <option value="Vocational Trade and Services" >Vocational Trade and Services</option>
                 </select>
-
 
             </div>
         </div>
