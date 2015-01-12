@@ -11,6 +11,7 @@
 <?php
 
 //initilize the page
+
 require_once("inc/init.php");
 
 require_once("inc/config.ui.php");
@@ -22,6 +23,10 @@ $page_css[] = "your_style.css";
 <html>
     <head>
         @include('includes.head2')
+        <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/jquery.simple-dtpicker.css" type="text/css" />
+        <script src="<?php echo ASSETS_URL; ?>/js/jquery.simple-dtpicker.js"></script>
+        <!--<script type="text/javascript" src="<?php /*echo ASSETS_URL; */?>/js/plugin/datepicker/js/eye.js"></script>
+        <script type="text/javascript" src="<?php /*echo ASSETS_URL; */?>/js/plugin/datepicker/js/utils.js"></script>-->
     </head>
 <body>
 @include('includes.header2')
@@ -51,10 +56,14 @@ $page_css[] = "your_style.css";
 <?php
 //include required scripts
 include("inc/scripts.php");
+Session::flush();
 ?>
 
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/fuelux/wizard/wizard.min.js"></script>
+
+
+
 
 <script>
 
@@ -115,7 +124,8 @@ include("inc/scripts.php");
                 place_of_issuance :{required :true
                 },education_level:{required:true},company_name:{required:true},company_address:{required:true},company_phone:{required:true},annual_ave_income:{required:true},source_of_fund:{required:true},
                 bank_name:{required:true},account_name:{required:true},account_number:{required:true},bvn:{required:true},
-                kin_firstname:{required:true},kin_lastname:{required:true},kin_relationship:{required:true},kin_phone:{required:true}
+                kin_firstname:{required:true},kin_lastname:{required:true},kin_relationship:{required:true},kin_phone:{required:true},
+                signature:{required:true},photo:{required:true},utility:{required:true},identity:{required:true}
 
             },
 
@@ -145,8 +155,9 @@ include("inc/scripts.php");
                 identification_type                 :"Please specify identification type",
                 place_of_issuance                   :"Please specify place of issuance",
                 education_level:"Please specify education level",company_name:"Please specify company name",company_address:"Please specify company address",company_phone:"Please specify company phone",annual_ave_income:"Please specify average annual income",source_of_fund:"Please specify source of investment fund",
-                bank_name:"Please specify bank name",account_name:"Please specify account name",account_number:"Please specify account number",bvn:"please specify bank verification number"
-                kin_firstname:"Please specify firstname",kin_lastname:"Please specify lastname",kin_relationship:"Please specify relationship",kin_phone:"Please specify phon number"
+                bank_name:"Please specify bank name",account_name:"Please specify account name",account_number:"Please specify account number",bvn:"please specify bank verification number",
+                kin_firstname:"Please specify firstname",kin_lastname:"Please specify lastname",kin_relationship:"Please specify relationship",kin_phone:"Please specify phon number",
+                signature:"Please upload your signature",photo:"Please upload a passport photograph",utility:"Please upload recent copy of utility bill",identity:"Upload a valid means of identification"
 
             },
 
@@ -167,6 +178,296 @@ include("inc/scripts.php");
             }
         });
 
+       /* $('input#residence_date').DatePicker({
+            flat: true,
+            date: '2008-07-31',
+            current: '2008-07-31',
+            calendars: 1,
+            starts: 1
+        });*/
+        $( "#residence_date" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+
+
+        $( "#date_of_birth" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+
+        $( "#employment_date" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+
+        $( "#issuance_date" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        $( "#expiry_date" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        $( "#kin_date_of_birth" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        $( "#minor_date_of_birth" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+
+
+        $( "#political_office_date_from" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        $( "#political_office_date_to" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+
+        $( "#asso_political_office_date_to,#asso_political_office_date_from" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        $( "#asso_political_office_date_from" ).datepicker({
+            showWeek: true,
+            firstDay: 1,
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            beforeShow: function(input) {
+                setTimeout(function() {
+                    var widgetHeader = $(input).datepicker("widget").find(".ui-datepicker-header");
+                    var prevYrBtn = $('<button title="PrevYr">&lt;&lt; Prev Year</button>');
+                    prevYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), -1, 'Y');
+
+                    });
+                    var nextYrBtn = $('<button title="NextYr">Next year &gt;&gt;</button>');
+                    nextYrBtn.unbind("click").bind("click", function() {
+                        $.datepicker._adjustDate($(input), +1, 'Y');
+
+                    });
+                    prevYrBtn.appendTo(widgetHeader);
+                    nextYrBtn.appendTo(widgetHeader);
+
+                }, 1);
+            }
+        });
+        //$('*[name=residence_date]').appendDtpicker();
+        //$('*[name=tdate]').appendDtpicker();
+
+        $("#state_of_birth").on("change",function(){
+            alert("allgood")
+            $.ajax({url:"individual", type:"POST",data:{country:$(this).val()},
+                success : function(data){
+                    $("#lga_of_birth").html(data);
+                }
+            })
+        })
+
         $('#bootstrap-wizard-1').bootstrapWizard({
             'tabClass': 'form-wizard',
             'onNext': function (tab, navigation, index) {
@@ -175,7 +476,7 @@ include("inc/scripts.php");
                     $validator.focusInvalid();
                     return false;
                 } else {
-                    $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
+                     $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
                         'complete');
                     $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
                         .html('<i class="fa fa-check"></i>');
@@ -183,7 +484,9 @@ include("inc/scripts.php");
             }
         });
 
-
+        $("#signature").on("change",function(){
+            $(".smart-form").append("<img src='"+$(this).val()+"'>")
+        })
 
         // fuelux wizard
         var wizard = $('.wizard').wizard();

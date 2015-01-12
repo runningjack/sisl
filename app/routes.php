@@ -21,9 +21,10 @@ Route::get('pages/home', 'HomeController@index');
 Route::get('pages/{permalink}',array('as'=>'pages','uses'=>'HomeController@getPages'));
 Route::get('posts/{permalink}',array('as'=>'pages','uses'=>'HomeController@getPages'));
 //Route::get('pages/{permalink}',array('as'=>'pages','uses'=>'HomeController@getPages'));
-Route::get('accounts/individual',array('as'=>'individual','uses'=>'HomeController@getIndividual'));
-Route::get('accounts/corporate',array('as'=>'corporate','uses'=>'HomeController@getCorporate'));
-Route::get('accounts/joint',array('as'=>'corporate','uses'=>'HomeController@getJoint'));
+Route::get('accounts/individual',array('as'=>'individual','uses'=>'AccountController@getIndividual'));
+Route::post('accounts/individual',array('as'=>'individualp','uses'=>'AccountController@postIndividual'));
+Route::get('accounts/corporate',array('as'=>'corporate','uses'=>'AccountController@getCorporate'));
+Route::get('accounts/joint',array('as'=>'corporate','uses'=>'AccountController@getJoint'));
 Route::post('/', array('as'=>"symbols","uses"=>'HomeController@getSymbol'));
 Route::get("downloads/index",array("as"=>"symbols","uses"=>"HomeController@getDownload"));
 

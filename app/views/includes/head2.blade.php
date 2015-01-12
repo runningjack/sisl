@@ -28,6 +28,8 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/smartadmin-rtl.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/doc.css">
+
+
 <?php
 
 /*if ($page_css) {
