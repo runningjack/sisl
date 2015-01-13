@@ -2,6 +2,352 @@
 @section("content")
 
 <h2>Corporate Account Openning Form</h2>
+
+<div id="dialog_simple" title="Stanbic IBTC Stockbrokers, Add New Signatory">
+<div id="msg"></div>
+<div class="bar-holder">
+    <div class="progress">
+        <div class="progress-bar bg-color-teal" aria-valuetransitiongoal="10" aria-valuenow="10" style="width: 10%;">10%</div>
+    </div>
+</div>
+
+<div id="output"></div>
+<form id="authorized"  enctype="multipart/form-data">
+
+<p>
+
+
+
+
+</p>
+
+
+<div class="tab-content">
+    <div class="tab-pane active" id="hr1">
+
+        <div class="tabbable tabs-below">
+            <div class="tab-content padding-10">
+                <div class="tab-pane active" id="AA">
+                    <p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="First Name" type="text" name="signatory_firstname" id="signatory_firstname" value="{{Input::old('signatory_firstname')}}">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="Last Name" type="text" name="signatory_lastname" id="signatory_lastname" value="{{Input::old('signatory_lastname')}}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="Signatory's Othernames" type="text" name="signatory_othernames" id="signatory_othernames" value="{{Input::old('signatory_othernames')}}">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-child fa-lg fa-fw"></i></span>
+                                    <select class="form-control input-lg" name="signatory_gender" id="signatory_gender">
+                                        <option value="">Select gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="Signatory's Date of birth"  type="text" name="signatory_date_of_birth" value="{{Input::old('signatory_date_of_birth')}}" id="signatory_date_of_birth">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
+                                    <select name="signatory_place_of_birth" id="signatory_place_of_birth" class="form-control input-lg">
+                                        <option value="" selected="selected">Select Place of birth</option>
+                                        @if(count($countries) > 0)
+                                        @foreach($countries as $country)
+                                        <option value="{{$country->name}}">{{$country->name}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input">
+
+                                    <textarea class="form-control input-lg" placeholder="Residence Address" type="text" name="signatory_residence_address" id="signatory_residence_address">{{Input::old('signatory_residence_address')}}</textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input">
+                                    <select name="signatory_country_of_residence" class="form-control input-lg">
+                                        <option value="" selected="selected">Select company country of residence</option>
+                                        @if(count($countries) > 0)
+                                        @foreach($countries as $country)
+                                        <option value="{{$country->name}}">{{$country->name}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="E-mail" type="text" name="signatory_email" id="signatory_email" value="{{Input::old('signatory_email')}}">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg" placeholder="Telephone" type="text" name="signatory_phone" id="signatory_phone" value="{{Input::old('signatory_phone')}}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </p>
+                </div>
+                <div class="tab-pane" id="BB">
+                    <p>
+                    <div class="row">
+                        <fieldset>
+                            <legend>IDENTIFICATION</legend>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+                                    <div class="input">
+                                        <label class="radio ">
+                                            <input class="form-control radio" type="radio" id="signatory_identification_type" name="signatory_identification_type" value="Driver's Licence" @if(Input::old("signatory_identification_type") == "Driver's Licence") {{"checked"}} @endif > Drivers Licence
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+
+                                    <div class="input">
+                                        <label class="radio ">
+                                            <input class="form-control radio " type="radio" id="signatory_identification_type" name="signatory_identification_type" value="National ID Card" @if(Input::old("signatory_identification_type") == "National ID Card") {{"checked"}} @endif>National ID Card
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+
+                                <div class="input">
+                                    <label class="radio ">
+                                        <input class="form-control radio " type="radio" id="signatory_identification_type" name="signatory_identification_type" value="International Passport" @if(Input::old("signatory_identification_type") == "International Passport") {{"checked"}} @endif>International Passport
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>ID Number</label>
+                                    <input class="form-control input-lg " placeholder="ID Number" type="text" id="signatory_identification_number" name="signatory_identification_number" value="{{Input::old('signatory_identification_number')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Issuance Date</label>
+                                    <input class="form-control input-lg " placeholder="Issuance Date" type="text" id="signatory_issuance_date" name="signatory_issuance_date" value="{{Input::old('signatory_issuance_date')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Expiry Date</label>
+                                    <input class="form-control input-lg" placeholder="Expiry Date" type="text" name="signatory_expiry_date" id="signatory_expiry_date" value="{{Input::old('signatory_expiry_date')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label>Place of Issuance</label>
+                                    <input class="form-control input-lg " placeholder="Place of Issuance" type="text" id="signatory_place_of_issuance" name="signatory_place_of_issuance" value="{{Input::old('signatory_place_of_issuance')}}" >
+                                </div>
+                            </div>
+                        </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa- fa-lg fa-fw"></i></span>
+                                    <input class="form-control input-lg " placeholder="Signatory's Designation" type="text" id="signatory_designation" name="signatory_designation" value="{{Input::old('signatory_designation')}}" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <fieldset><legend><strong>Class</strong></legend>
+                            <div class="col-sm-4">
+                                <div class="form-group ">
+                                    <div class="input">
+                                        <label class="radio ">
+                                            <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="A" @if(Input::old("signatory_authorization_class") == "A") {{"checked"}} @endif style="margin-left: 0 !important;">A
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="input">
+                                        <label class="radio ">
+                                            <input class="form-control radio " type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="B" @if(Input::old("signatory_authorization_class") == "B") {{"checked"}} @endif STYLE="margin-left: 0 !important">B
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+
+                                    <div class="input">
+                                        <label class="radio ">
+                                            <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="C" @if(Input::old("signatory_authorization_class") == "C") {{"checked"}} @endif STYLE="margin-left: 0 !important">C
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                    </p>
+                </div>
+                <div class="tab-pane" id="CC">
+                    <p>
+                    <div class="row smart-form">
+                        <fieldset><legend> Upload signature</legend>
+                            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a valid utility bill not more than 3 month old</label>
+                            <label class="input input-file">
+                                <span class="button">
+
+                                    <input class="" type="file" name="file_signatory_signature" id="file_signatory_signature" onchange="document.getElementById('signatory_signature').value = this.value" >Browse</span>
+                                <input class="" placeholder="Upload Signatory's signature" type="text" id="signatory_signature" name="signatory_signature" readonly="" value="">
+                            </label>
+                        </fieldset>
+                    </div>
+                    <div class="row smart-form">
+                        <fieldset><legend> Upload recent passport photograph</legend>
+                            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a recent passport photograph</label>
+                            <label class="input input-file">
+                                <span class="button">
+                                    <input class="" type="file" name="file_signatory_photo" id="file_signatory_photo" onchange="document.getElementById('signatory_photo').value = this.value" >Browse</span>
+                                <input class="" type="text" id="signatory_photo" name="signatory_photo" readonly="" placeholder="Upload a valid passport photograph" value="">
+                            </label>
+                        </fieldset>
+                    </div>
+                    <div class="row smart-form">
+                        <fieldset><legend> Upload means of identification</legend>
+                            <label class="help-block bg-color-blueDark txt-color-white">Ensure that you upload a valid means of identification</label>
+                            <label class="input input-file">
+                                <span class="button">
+                                    <input class="" type="file" name="file_signatory_identity" id="file_signatory_identity" onchange="document.getElementById('signatory_identity').value = this.value" >Browse</span>
+                                <input class="" type="text" id="signatory_identity" name="signatory_identity" readonly="" value="">
+                            </label>
+                        </fieldset>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#AA"><h4>Authorized Signatory Basic Info</h4></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#BB"><h4>Authorized Signatory Identity</h4></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#CC"><h4>Document Upload</h4></a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+<div><input type="submit" value="submit"></div>
+</form>
+</div>
 <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false">
 
 <header>
@@ -125,7 +471,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-building fa-lg fa-fw"></i></span>
-                    <select class="form-control input-lg" name="state_of_birth" id="state_of_birth">
+                    <select class="form-control input-lg" name="place_of_incorporation" id="place_of_incorporation">
                         <option value="">Place of Incorporation</option>
                         @if(count($states) > 0)
                         @foreach($states as $country)
@@ -523,6 +869,44 @@
 <br>
 <h3><strong>Step 4</strong> - AUTHORIZED SIGNATORY I</h3>
 <br>
+    <div class="row" id="sigdata">
+        <?php (print_r(unserialize(Session::get("myauth")))) ?>
+        @if(Session::has("myauth"))
+
+        {{--*/$authorities = unserialize(Session::get("myauth"))/*--}}
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Sn</th>
+                <th>Fullname</th>
+                <th>Designation</th>
+                <th>Address</th>
+                <th>Phone</th>
+
+                <th>s</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{--*/ $x = 1 /*--}}
+            @foreach($authorities as $page)
+            <tr>
+                <td>{{$x }}</td>
+                <td>{{$page->signatory_firstname}} {{$page->signatory_firstname}}</td>
+                <td>{{$page->signatory_designation}}</td>
+                <td{{$page->signatory_address}}</td>
+                <td>{{$page->signatory_phone}}</td>
+
+
+                <td></td>
+            </tr>
+            {{--*/ $x++ /*--}}
+            @endforeach
+            </tbody>
+        </table>
+
+        @endif
+    </div>
 
     <div class="row">
         <hr>
@@ -532,270 +916,7 @@
                 </a>
             </div>
 
-        <div id="dialog_simple" title="Dialog Simple Title">
-            <div id="msg"></div>
-            <p>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="First Name" type="text" name="signatory_firstname" id="signatory_firstname" value="{{Input::old('signatory_firstname')}}">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="Last Name" type="text" name="signatory_lastname" id="signatory_lastname" value="{{Input::old('signatory_lastname')}}">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="Signatory's Othernames" type="text" name="signatory_othernames" id="signatory_othernames" value="{{Input::old('signatory_othernames')}}">
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-child fa-lg fa-fw"></i></span>
-                            <select class="form-control input-lg" name="gender" id="gender">
-                                <option value="">Select gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Others">Others</option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-
-                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="Signatory's Date of birth"  type="text" name="signatory_date_of_birth" value="{{Input::old('signatory_date_of_birth')}}" id="signatory_date_of_birth">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-map-marker fa-lg fa-fw"></i></span>
-                            <select name="signatory_place_of_birth" id="signatory_place_of_birth" class="form-control input-lg">
-                                <option value="" selected="selected">Select Place of birth</option>
-                                @if(count($countries) > 0)
-                                @foreach($countries as $country)
-                                <option value="{{$country->name}}">{{$country->name}}</option>
-                                @endforeach
-                                @endif
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input">
-
-                            <textarea class="form-control input-lg" placeholder="Residence Address" type="text" name="signatory_residence_address" id="signatory_residence_address">{{Input::old('residence_address')}}</textarea>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input">
-                            <select name="signatory_country_of_residence" class="form-control input-lg">
-                                <option value="" selected="selected">Select company country of residence</option>
-                                @if(count($countries) > 0)
-                                @foreach($countries as $country)
-                                <option value="{{$country->name}}">{{$country->name}}</option>
-                                @endforeach
-                                @endif
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="E-mail" type="text" name="email" id="email" value="{{Input::old('email')}}">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-phone fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg" placeholder="Telephone" type="text" name="phone" id="phone" value="{{Input::old('phone')}}">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <fieldset>
-                    <legend>IDENTIFICATION</legend>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-
-                            <div class="input">
-                                <label class="radio ">
-                                    <input class="form-control radio" type="radio" id="identification_type" name="identification_type" value="Driver's Licence" @if(Input::old("identification_type") == "Driver's Licence") {{"checked"}} @endif > Drivers Licence
-                                </label>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-
-
-                            <div class="input">
-                                <label class="radio ">
-                                    <input class="form-control radio " type="radio" id="identification_type" name="identification_type" value="National ID Card" @if(Input::old("identification_type") == "National ID Card") {{"checked"}} @endif>National ID Card
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-
-
-                        <div class="input">
-                            <label class="radio ">
-                                <input class="form-control radio " type="radio" id="identification_type" name="identification_type" value="International Passport" @if(Input::old("identification_type") == "International Passport") {{"checked"}} @endif>International Passport
-                            </label>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <hr>
-
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label>ID Number</label>
-                            <input class="form-control input-lg " placeholder="ID Number" type="text" id="identification_number" name="identification_number" value="{{Input::old('identification_number')}}">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label>Issuance Date</label>
-                            <input class="form-control input-lg " placeholder="Issuance Date" type="text" id="issuance_date" name="issuance_date" value="{{Input::old('issuance_date')}}">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label>Expiry Date</label>
-                            <input class="form-control input-lg" placeholder="Expiry Date" type="text" name="expiry_date" id="expiry_date" value="{{Input::old('expiry_date')}}">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label>Place of Issuance</label>
-                            <input class="form-control input-lg " placeholder="Place of Issuance" type="text" id="place_of_issuance" name="place_of_issuance" value="{{Input::old('place_of_issuance')}}" >
-                        </div>
-                    </div>
-                </div>
-                </fieldset>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa- fa-lg fa-fw"></i></span>
-                            <input class="form-control input-lg " placeholder="Signatory's Designation" type="text" id="signatory_designation" name="signatory_designation" value="{{Input::old('signatory_designation')}}" >
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <fieldset><legend><strong>Class</strong></legend>
-                    <div class="col-sm-4">
-                        <div class="form-group ">
-                            <div class="input">
-                                <label class="radio ">
-                                    <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="A" @if(Input::old("signatory_authorization_class") == "A") {{"checked"}} @endif style="margin-left: 0 !important;">A
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <div class="input">
-                                <label class="radio ">
-                                    <input class="form-control radio " type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="B" @if(Input::old("signatory_authorization_class") == "B") {{"checked"}} @endif STYLE="margin-left: 0 !important">B
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="form-group">
-
-                            <div class="input">
-                                <label class="radio ">
-                                    <input class="form-control radio" type="radio" id="signatory_authorization_class" name="signatory_authorization_class" value="C" @if(Input::old("signatory_authorization_class") == "C") {{"checked"}} @endif STYLE="margin-left: 0 !important">C
-                                </label>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </fieldset>
-            </div>
-            </p>
-        </div>
 
 
 
@@ -877,7 +998,7 @@
     <br>
     <h3><strong>Step 6</strong> - Attestation</h3>
     <br>
-    <div class="row">
+    <div class="row smart-form">
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="input">

@@ -54,11 +54,11 @@ $page_css[] = "your_style.css";
 
 @include('includes.footer2')
 <?php
-//include required scripts
-include("inc/scripts.php");
-Session::flush();
-?>
 
+include("inc/scripts.php");
+//Session::flush();
+?>
+<script src="<?php echo ASSETS_URL; ?>/js/underscore.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/fuelux/wizard/wizard.min.js"></script>
 
@@ -66,9 +66,19 @@ Session::flush();
 
 
 <script>
-
+var filesToUpload = null;
     $(document).ready(function() {
-        // PAGE RELATED SCRIPTS
+
+
+        $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+            _title : function(title) {
+                if (!this.options.title) {
+                    title.html("&#160;");
+                } else {
+                    title.html(this.options.title);
+                }
+            }
+        }));
 
 
         var $validator = $("#wizard-1").validate({
@@ -212,7 +222,7 @@ Session::flush();
 
 
 
-        $( "#issuance_date,#joint_issuance_date" ).datepicker({
+        $( "#issuance_date,#joint_issuance_date,#signatory_date_of_birth,#signatory_issuance_date,#signatory_expiry_date" ).datepicker({
             showWeek: true,
             firstDay: 1,
             dateFormat: 'yy-mm-dd',
@@ -292,13 +302,28 @@ Session::flush();
         //$('*[name=tdate]').appendDtpicker();
 
         $("#state_of_birth").on("change",function(){
-            alert("allgood")
+
             $.ajax({url:"individual", type:"POST",data:{country:$(this).val()},
                 success : function(data){
                     $("#lga_of_birth").html(data);
                 }
             })
         })
+
+        $('#dialog_link').click(function() {
+            $('#dialog_simple').dialog('open');
+            return false;
+
+        });
+
+        $('#dialog_simple').dialog({
+            autoOpen : false,
+            width : 900,
+            resizable : false,
+            modal : true,
+            title : "<div class='widget-header'><h4><i class='fa fa-warning'></i> Add New Signatory</h4></div>"
+
+        });
 
         $('#bootstrap-wizard-1').bootstrapWizard({
             'tabClass': 'form-wizard',
@@ -338,7 +363,82 @@ Session::flush();
 
 
 
+            $("#authorized").on('submit',handleFormSubmit)
+
+
+
+
+        /**
+         * Read selected files locally (HTML5 File API)
+         */
+
+        function handleFileSelect(event)
+        {
+            var files = event.target.files || event.originalEvent.dataTransfer.files;
+            // Itterate thru files (here I user Underscore.js function to do so).
+            // Simply user 'for loop'.
+            _.each(files, function(file) {
+                filesToUpload.push(file);
+            });
+        }
+
+        /**
+         * Form submit
+         */
+        function handleFormSubmit(event)
+        {
+            event.preventDefault();
+
+            var form = this,
+                formData = new FormData(form);  // This will take all the data from current form and turn then into FormData
+
+            // Prevent multiple submisions
+            if ($(form).data('loading') === true) {
+                return;
+            }
+            $(form).data('loading', true);
+
+            // Add selected files to FormData which will be sent
+            if (filesToUpload) {
+                _.each(filesToUpload, function(file){
+                    formData.append('cover[]', file);
+                });
+            }
+
+            $.ajax({
+                type: "POST",
+                url: 'individual',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response)
+                {
+                    $("#sigdata").html(response)
+                },
+                complete: function()
+                {
+                    // Allow form to be submited again
+                    $(form).data('loading', false);
+
+                },
+                dataType: 'json'
+            });
+        }
+
+
+        /**
+         * Register events
+         */
+        $('#file_signatory_identity').on('change', handleFileSelect);
+        $('#file_signatory_signature').on('change', handleFileSelect);
+        $('#file_signatory_photo').on('change', handleFileSelect);
+       // $('form').on('submit', handleFormSubmit);
+
+
     })
+
+
+
 
 </script>
 

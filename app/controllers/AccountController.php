@@ -144,6 +144,67 @@ class AccountController extends BaseController{
                 }
                 echo $st;
             }
+            $input = Input::all();
+            $file = "./accounts/" ;
+            $sign_name="";
+            $sign_tmp_name ="";
+            $NewFileNameSignature = "";
+            $NewFileNamePhoto = "";
+            $NewFileNameIdentity = "";
+
+            if($_FILES["file_signatory_signature"]!="") {
+
+                    $sign_name = $_FILES["file_signatory_signature"]["name"];
+                    $File_Ext           = substr($sign_name, strrpos($sign_name, '.')); //get file extention
+                    $sign_tmp_name = $_FILES["file_signatory_signature"]["tmp_name"];
+                    $NewFileNameSignature        = $input["signatory_firstname"]."_".$input["signatory_lastname"]."_signature".time().$File_Ext ;
+                    //move_uploaded_file($tmp_name, "$uploads_dir/$name");
+                move_uploaded_file($sign_tmp_name,$file.basename($sign_name) );
+                rename($file.basename($sign_name),$file.$NewFileNameSignature);
+            }
+            if($_FILES["file_signatory_photo"]!="") {
+
+                $sign_name = $_FILES["file_signatory_photo"]["name"];
+                $File_Ext           = substr($sign_name, strrpos($sign_name, '.')); //get file extention
+                $sign_tmp_name = $_FILES["file_signatory_photo"]["tmp_name"];
+                $NewFileNamePhoto        = $input["signatory_firstname"]."_".$input["signatory_lastname"]."_photo".time().$File_Ext ;
+                //move_uploaded_file($tmp_name, "$uploads_dir/$name");
+                move_uploaded_file($sign_tmp_name,$file.basename($sign_name) );
+                rename($file.basename($sign_name),$file.$NewFileNamePhoto);
+            }
+            if($_FILES["file_signatory_identity"]!="") {
+
+                $sign_name = $_FILES["file_signatory_identity"]["name"];
+                $File_Ext           = substr($sign_name, strrpos($sign_name, '.')); //get file extention
+                $sign_tmp_name = $_FILES["file_signatory_identity"]["tmp_name"];
+                $NewFileNameIdentity        = $input["signatory_firstname"]."_".$input["signatory_lastname"]."_identity".time().$File_Ext ;
+                //move_uploaded_file($tmp_name, "$uploads_dir/$name");
+                move_uploaded_file($sign_tmp_name,$file.basename($sign_name) );
+                rename($file.basename($sign_name),$file.$NewFileNameIdentity);
+            }
+
+
+            array_forget($input,'file_signatory_identity');
+            array_forget($input,'file_signatory_signature');
+
+            array_forget($input,'file_signatory_photo');
+            array_forget($input,'signatory_identity');
+            array_forget($input,'signatory_photo');
+            array_forget($input,'signatory_signature');
+            array_forget($input,'_token');
+            array_forget($input,'title');
+            $sign = new Signatory();
+
+            foreach( $input as $key => $value) {
+                $sign->$key = $value;
+            }
+            $sign->signatory_signature = $NewFileNameSignature;
+            $sign->signatory_photo = $NewFileNamePhoto;
+            $sign->signatory_identity = $NewFileNameIdentity;
+
+            $sign->save();
+            Session::put("myauth",serialize($sign));
+                print_r(Session::get("myauth"));
             exit;
 
         }
